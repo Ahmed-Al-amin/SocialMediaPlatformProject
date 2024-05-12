@@ -36,7 +36,7 @@ public class StartSignupController {
     @FXML
     AnchorPane AddPostLabel;
     public void AddPost (MouseEvent a) throws IOException {
-        parent = FXMLLoader.load(getClass().getResource("/FXML/AddPost.fxml"));
+        parent = FXMLLoader.load(getClass().getResource("/FXML/Dashboard.fxml"));
         stage = (Stage) ((Node)a.getSource()).getScene().getWindow();
 
         scene = new Scene(parent);
