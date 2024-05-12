@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="790.0" prefWidth="1509.0" style="-fx-background-color: rgb(220,220,220);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.main.socialplatform.Contollers.SignupController">
+    <AnchorPane layoutX="231.0" layoutY="42.0" prefHeight="626.0" prefWidth="845.0" style="-fx-background-color: rgb(200,200,200); -fx-border-color: black; -fx-border-width: 3;">
+        <PasswordField fx:id="PasswordField" layoutX="288.0" layoutY="189.0" prefHeight="40.0" prefWidth="202.0" promptText="Password" style="-fx-background-color: white;" />
+        <TextField fx:id="NameField" layoutX="289.0" layoutY="75.0" prefHeight="40.0" prefWidth="202.0" promptText="Name" style="-fx-background-color: white;" />
+        <Label layoutX="47.0" layoutY="75.0" prefHeight="40.0" prefWidth="150.0" text="Name:">
+            <font>
+                <Font name="Calibri Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="47.0" layoutY="189.0" prefHeight="40.0" prefWidth="150.0" text="Password:">
+            <font>
+                <Font name="Calibri Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <TextField fx:id="ageField" layoutX="289.0" layoutY="413.0" prefHeight="40.0" prefWidth="202.0" promptText="Age" style="-fx-background-color: white;" />
+        <Label layoutX="47.0" layoutY="240.0" prefHeight="40.0" prefWidth="150.0" text="Confirm password:">
+            <font>
+                <Font name="Calibri Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <TextField fx:id="Usernamefield" layoutX="289.0" layoutY="135.0" prefHeight="40.0" prefWidth="202.0" promptText="Username" style="-fx-background-color: white;" />
+        <Label layoutX="47.0" layoutY="135.0" prefHeight="40.0" prefWidth="150.0" text="Usename:">
+            <font>
+                <Font name="Calibri Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <TextField fx:id="EmailField" layoutX="289.0" layoutY="300.0" prefHeight="40.0" prefWidth="202.0" promptText="Email" style="-fx-background-color: white;" />
+        <Label layoutX="47.0" layoutY="300.0" prefHeight="40.0" prefWidth="150.0" text="Email:">
+            <font>
+                <Font name="Calibri Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="47.0" layoutY="356.0" prefHeight="40.0" prefWidth="150.0" text="Phone number:">
+            <font>
+                <Font name="Calibri Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <TextField fx:id="phoneNumberField" layoutX="289.0" layoutY="356.0" prefHeight="40.0" prefWidth="202.0" promptText="Phone number" style="-fx-background-color: white;" />
+        <PasswordField fx:id="ConfirmPasswordField" layoutX="289.0" layoutY="240.0" prefHeight="40.0" prefWidth="202.0" promptText="Confirm Password" style="-fx-background-color: white;" />
+        <Label layoutX="47.0" layoutY="413.0" prefHeight="40.0" prefWidth="150.0" text="Age:">
+            <font>
+                <Font name="Calibri Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="646.0" style="-fx-background-color: rgb(200,200,200);" text="Enter your information to create account">
+            <font>
+                <Font name="Calibri Italic" size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="EnterData" layoutX="227.0" layoutY="563.0" mnemonicParsing="false" onAction="#Signup" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: rgb(100,100,255); -fx-background-radius: 25;" text="Enter">
+            <font>
+                <Font name="Calibri Bold Italic" size="18.0" />
+            </font>
+        </Button>
+        <RadioButton fx:id="femaleButton" layoutX="415.0" layoutY="462.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="88.0" text="Femal">
+            <font>
+                <Font name="Calibri Bold Italic" size="18.0" />
+            </font>
+            <toggleGroup>
+                <ToggleGroup fx:id="Gender" />
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton fx:id="maleButton" layoutX="279.0" layoutY="462.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="88.0" text="Male" toggleGroup="$Gender">
+            <font>
+                <Font name="Calibri Bold Italic" size="18.0" />
+            </font>
+        </RadioButton>
+        <Label layoutX="47.0" layoutY="462.0" prefHeight="40.0" prefWidth="150.0" text="Gender:">
+            <font>
+                <Font name="Calibri Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="nameLabel" layoutX="545.0" layoutY="75.0" prefHeight="40.0" prefWidth="302.0" textFill="#ef0b0b" underline="true">
+            <font>
+                <Font name="Calibri Italic" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="usernameLabel" layoutX="545.0" layoutY="135.0" prefHeight="40.0" prefWidth="302.0" textFill="#ef0b0b" underline="true">
+            <font>
+                <Font name="Calibri Italic" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="passwordLabel" layoutX="544.0" layoutY="189.0" prefHeight="40.0" prefWidth="302.0" textFill="#ef0b0b" underline="true">
+            <font>
+                <Font name="Calibri Italic" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="confirmPasswordLabel" layoutX="544.0" layoutY="240.0" prefHeight="40.0" prefWidth="302.0" textFill="#ef0b0b" underline="true">
+            <font>
+                <Font name="Calibri Italic" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="emailLabel" layoutX="545.0" layoutY="300.0" prefHeight="40.0" prefWidth="302.0" textFill="#ef0b0b" underline="true">
+            <font>
+                <Font name="Calibri Italic" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="phoneLabel" layoutX="545.0" layoutY="356.0" prefHeight="40.0" prefWidth="302.0" textFill="#ef0b0b" underline="true">
+            <font>
+                <Font name="Calibri Italic" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="ageLabel" layoutX="544.0" layoutY="413.0" prefHeight="40.0" prefWidth="302.0" textFill="#ef0b0b" underline="true">
+            <font>
+                <Font name="Calibri Italic" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="genderlabel" layoutX="545.0" layoutY="462.0" prefHeight="40.0" prefWidth="302.0" textFill="#ef0b0b" underline="true">
+            <font>
+                <Font name="Calibri Italic" size="14.0" />
+            </font>
+        </Label>
+    </AnchorPane>
+    <Button fx:id="LoginBackButton" layoutX="441.0" layoutY="698.0" mnemonicParsing="false" onAction="#LoginScene" onMouseEntered="#Editing1" onMouseExited="#Editing2" prefHeight="40.0" prefWidth="434.0" style="-fx-background-color: rgb(220,220,220);" text="You already have an account, Login.">
+        <font>
+            <Font name="Calibri Bold Italic" size="24.0" />
+        </font>
+    </Button>
+</AnchorPane>

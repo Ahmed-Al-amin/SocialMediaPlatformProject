@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="1553.0" style="-fx-background-color: rgb(220,220,220);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.main.socialplatform.Contollers.StartSignupController">
+   <children>
+      <Label fx:id="welcomeNameLabel" alignment="CENTER" layoutX="-1.0" prefHeight="77.0" prefWidth="1554.0" text="Label">
+         <font>
+            <Font name="Calibri Bold Italic" size="36.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="179.0" layoutY="431.0" prefHeight="350.0" prefWidth="1194.0" style="-fx-background-color: rgb(220,220,220);">
+         <children>
+            <AnchorPane fx:id="SearchFriendLabel" layoutX="50.0" layoutY="14.0" onMouseClicked="#SearchFriend" prefHeight="274.0" prefWidth="200.0" style="-fx-background-color: rgb(200,200,200); -fx-border-color: black; -fx-border-width: 3;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="175.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Photos/pngtree-vector-search-icon-png-image_966647-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutY="203.0" prefHeight="46.0" prefWidth="184.0" text="Search for a friend">
+                     <font>
+                        <Font name="Calibri Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="EditProfileLabel" layoutX="925.0" layoutY="14.0" onMouseClicked="#EditProfile" prefHeight="274.0" prefWidth="200.0" style="-fx-background-color: rgb(200,200,200); -fx-border-color: black; -fx-border-width: 3;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Photos/4879835-200.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="13.0" layoutY="202.0" prefHeight="46.0" prefWidth="184.0" text="Edit profile">
+                     <font>
+                        <Font name="Calibri Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="AddPostLabel" layoutX="484.0" layoutY="14.0" onMouseClicked="#AddPost" prefHeight="273.0" prefWidth="200.0" style="-fx-background-color: rgb(200,200,200); -fx-border-color: black; -fx-border-width: 3;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="142.0" layoutX="33.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Photos/Untitled_design__10_-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="8.0" layoutY="202.0" prefHeight="46.0" prefWidth="184.0" text="Add new post">
+                     <font>
+                        <Font name="Calibri Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="191.0" fitWidth="247.0" layoutX="1314.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Photos/Untitled_design__20_-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="179.0" fitWidth="174.0" layoutX="54.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Photos/Untitled_design__22_-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="191.0" fitWidth="174.0" layoutX="467.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Photos/Untitled_design__13_-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="191.0" fitWidth="247.0" layoutX="882.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Photos/Untitled_design__26_-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1132.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="686.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Photos/Untitled_design__9_-removebg-preview5.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="222.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="247.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Photos/Untitled_design__10_-removebg-preview7.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
