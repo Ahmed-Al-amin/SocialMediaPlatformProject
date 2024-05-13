@@ -9,7 +9,8 @@ public class Comment extends Author {
     /********************************************Attributes**************************************************/
     private static int Id=0;
     private int commentId;
-    private List<Reply> userReplies;
+    private int postId;
+
 
     /************************************************Constructor***********************************************/
 
@@ -17,23 +18,30 @@ public class Comment extends Author {
         this.numberOfReacts = 0;
         commentId = Id;
         Id++;
-        this.userReplies = new ArrayList<>();
         this.content =content;
 
+    }
+    public Comment (String content, String name,String time,int postid )
+    {
+        this.content = content;
+        this.timestamp = time;
+        this.author = name;
+        this.postId = postid;
     }
     /******************************************************Setters and Getters***********************************/
 
     public int getId(){
         return commentId;
     }
-
-    public List<Reply> getUserReplies(){
-        return userReplies;
+    public int getPostId(){
+        return postId;
+    }
+    public void SetPostId(int postId ){
+        this.postId = postId;
     }
 
-    public Reply getReply(int replyId){
-        return getUserReplies().get(replyId);
-    }
+
+
 
     @Override
     public int getReacts() {
@@ -42,9 +50,6 @@ public class Comment extends Author {
 
     /**********************************************Methods******************************************************/
 
-    public void addReply(Reply newReply){
-        userReplies.add(newReply);
-    }
 
 
     @Override
@@ -52,15 +57,8 @@ public class Comment extends Author {
         numberOfReacts++;
     }
 
-    public void editReply(int replyId,String newContent){
-        getReply(replyId).setContent(newContent);
-        System.out.println("Reply edited");
-    }
 
-    public void deleteReply(int replyId){
-        getUserReplies().remove(getReply(replyId));
-        System.out.println("Reply deleted");
-    }
+
 
 
 

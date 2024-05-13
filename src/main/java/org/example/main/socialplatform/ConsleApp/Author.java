@@ -1,5 +1,6 @@
 package org.example.main.socialplatform.ConsleApp;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 
@@ -7,9 +8,9 @@ import java.sql.Timestamp;
 public abstract class Author {
     /********************************************Attributes*****************************************/
     protected int Id;
-    protected User author;
+    protected String  author;
     protected String content;
-    protected Timestamp timestamp;
+    protected String timestamp;
     protected int numberOfReacts=0;
 
     /************************************************Constructors**************************************/
@@ -32,20 +33,20 @@ public abstract class Author {
     public void setCntReacts(int cntReacts) {
         this.numberOfReacts = cntReacts;
     }
-    public Timestamp getTimestamp() {
+    public String getTimestamp() {
 
         return timestamp;
     }
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(String timestamp) {
 
         this.timestamp = timestamp;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(String author) {
 
         this.author = author;
     }
-    public User getAuthor() {
+    public String getAuthor() {
 
         return author;
     }

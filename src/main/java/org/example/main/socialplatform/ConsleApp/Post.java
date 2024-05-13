@@ -1,5 +1,6 @@
 package org.example.main.socialplatform.ConsleApp;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,7 +12,6 @@ public class Post extends Author {
     public static int Id = 0;
     public int postId;
 
-
     private ArrayList<User> Mentioned = new ArrayList<User>();
     private final ArrayList<Comment> comments = new ArrayList<Comment>();
     private int numberOfComments;
@@ -21,8 +21,24 @@ public class Post extends Author {
 
 /***********************************************Constructors***********************************************/
 public Post() {
-    timestamp=Timestamp.valueOf(LocalDateTime.now());
     postId=Id;
+    Id++;
+
+}
+public Post(String content, String date) {
+    super.content = content;
+    super.timestamp = date;
+    postId=Id;
+    Id++;
+
+}
+public Post(String content, String username, String time,int noOfcomments, int noOflikes, int postid)
+{
+    this.content=content;
+    this.author = username;
+    this.timestamp = time;
+    this.numberOfComments = noOfcomments;
+    this.numberOfReacts = noOflikes;
     Id++;
 
 }

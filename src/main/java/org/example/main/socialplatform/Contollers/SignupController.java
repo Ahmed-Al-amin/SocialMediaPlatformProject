@@ -318,7 +318,12 @@ public class SignupController {
             DataTransfer.WriteUserData(name,username,password,email,phonenumber,gender,age,Id);
 
             /*************************************************Switch the scene*****************************************/
-            parent = FXMLLoader.load(getClass().getResource("/FXML/StartSignup.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/StartSignup.fxml"));
+            parent = loader.load();
+
+            StartSignupController Start = loader.getController();
+            Start.setUser(user);
+            //parent = FXMLLoader.load(getClass().getResource("/FXML/StartSignup.fxml"));
             stage = (Stage) ((Node)a.getSource()).getScene().getWindow();
             scene = new Scene(parent);
             stage.setScene(scene);

@@ -72,9 +72,11 @@ public class LoginController implements Initializable {
                     InvalidLabel.setVisible(false);
                     user = userSearch;
                     System.out.println(userSearch.getName());
-                    DashboardController post = new DashboardController();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Dashboard.fxml"));
+                    parent = loader.load();
+                    DashboardController post = loader.getController();//DashboardController post = new DashboardController();
                     post.setUser(userSearch);
-                    parent = FXMLLoader.load(getClass().getResource("/FXML/Dashboard.fxml"));
+                    //parent = FXMLLoader.load(getClass().getResource("/FXML/Dashboard.fxml"));
                     stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
                     scene = new Scene(parent);
                     stage.setScene(scene);

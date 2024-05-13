@@ -7,7 +7,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import org.example.main.socialplatform.ConsleApp.Comment;
 import org.example.main.socialplatform.ConsleApp.Friendship;
+import org.example.main.socialplatform.ConsleApp.Post;
 import org.example.main.socialplatform.ConsleApp.User;
 import org.example.main.socialplatform.Models.DataTransfer;
 import org.example.main.socialplatform.Models.Model;
@@ -15,8 +17,12 @@ import org.example.main.socialplatform.Models.Model;
 import java.util.ArrayList;
 
 public class Main extends Application {
-    public Model model = new Model();
     public static ArrayList<User> Users = new ArrayList<>();
+    public static ArrayList<Post> Posts = new ArrayList<>();
+    public static ArrayList<Comment> comments = new ArrayList<>();
+    public static ArrayList<Comment> postcomments = new ArrayList<>();
+    public static ArrayList<Comment> postcomment = new ArrayList<>();
+    public static ArrayList<Post> userPosts = new ArrayList<>();
     public static ArrayList<Friendship> Friendships = new ArrayList<>();
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -51,6 +57,9 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         DataTransfer.getAllUsers();
+        DataTransfer.getAllPosts();
+        DataTransfer.getAllComments();
+        DataTransfer.Organizing();
           launch(args);
 //        DataTransfer dd = new DataTransfer();
 //        dd.writedata();
