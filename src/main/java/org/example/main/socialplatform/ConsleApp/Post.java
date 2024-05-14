@@ -11,6 +11,7 @@ public class Post extends Author {
     /*********************************************Attributes*********************************************/
     public static int Id = 0;
     public int postId;
+    private String Authorname;
 
     private ArrayList<User> Mentioned = new ArrayList<User>();
     private final ArrayList<Comment> comments = new ArrayList<Comment>();
@@ -32,8 +33,9 @@ public Post(String content, String date) {
     Id++;
 
 }
-public Post(String content, String username, String time,int noOfcomments, int noOflikes, int postid)
+public Post(String name,String content, String username, String time,int noOfcomments, int noOflikes, int postid)
 {
+    this.Authorname = name;
     this.content=content;
     this.author = username;
     this.timestamp = time;
@@ -69,6 +71,15 @@ public Post(String content, String username, String time,int noOfcomments, int n
     public void setNumberOfComments(int numberOfComments) {
         this.numberOfComments = numberOfComments;
     }
+
+    public String getAuthorname() {
+        return Authorname;
+    }
+
+    public void setAuthorname(String authorname) {
+        Authorname = authorname;
+    }
+
     /*******************************************************Methods******************************************/
 
     public void addReact() {

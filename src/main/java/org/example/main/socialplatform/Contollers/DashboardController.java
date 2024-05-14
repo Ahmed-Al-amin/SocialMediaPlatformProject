@@ -1,5 +1,6 @@
 package org.example.main.socialplatform.Contollers;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -37,6 +38,10 @@ public class DashboardController {
     public Label AllCommentsLabel;
     public TextField CommentField;
     public Button WriteCommentButton;
+    public Button LastPostButton;
+    public Button NextPostButton;
+    public VBox Nextpost;
+    public VBox Lastpost;
     User user;
     private Stage stage;
     private Scene scene;
@@ -55,16 +60,17 @@ public class DashboardController {
 
 
     }
-    static int i = 0;
+    static int i ;
 
     public void handelComments()
     {
-        postcomments = user.getAllPosts().get(i).getAllComments();
+
+        postcomments = Posts.get(i).getAllComments();
         String STR = "";
         for (Comment commentSearch : postcomments) {
+            STR += commentSearch.getAuthor() + "\n";
+            STR += commentSearch.getTimestamp() + "\n";
             STR += commentSearch.getContent();
-            STR += "\n";
-            STR += commentSearch.getTimestamp();
             STR += "\n--------------------------------------------------\n";
         }
         AllCommentsLabel.setText(STR);
@@ -73,55 +79,96 @@ public class DashboardController {
     public void viewFirstpost()
     {
 
-        try{
-        postNameLabe.setText(Posts.getFirst().getAuthor());
+        if (Posts.size() > 0){
+            i = 0;
+        postNameLabe.setText(Posts.getFirst().getAuthorname());
         postContentLabel.setText(Posts.getFirst().getContent());
         PostDateLabe.setText(Posts.getFirst().getTimestamp());
-        SuggestedLabel.setText("Suggested");
+        if (Posts.get(i).getAuthor().equals(user.getUserName()))
+        {
+            SuggestedLabel.setText("Your post");
+        }
+        else
+            SuggestedLabel.setText("Suggested");
         LikesLabel.setText(String.valueOf(Posts.getFirst().getReacts()));
         CommentsLabel.setText(String.valueOf(Posts.getFirst().getNumberOfComments()));
-            this.handelComments();}
-        catch (Exception a)
+            this.handelComments();
+            }
+       else
         {
             postContentLabel.setText("there is no posts");
         }
 
     }
-    public void viewLastposts(MouseEvent a)
+    public void viewLastpost()
     {
-        try {
-            postNameLabe.setText(Posts.get(i).getAuthor());
+        if (Posts.size() > 0){
+            i = Posts.size() - 1;
+            postNameLabe.setText(Posts.get(i).getAuthorname());
             postContentLabel.setText(Posts.get(i).getContent());
+
             PostDateLabe.setText(Posts.get(i).getTimestamp());
-            SuggestedLabel.setText("Suggested");
+            if (Posts.get(i).getAuthor().equals(user.getUserName()))
+            {
+                SuggestedLabel.setText("Your post");
+            }
+            else
+                SuggestedLabel.setText("Suggested");
             LikesLabel.setText(String.valueOf(Posts.get(i).getReacts()));
             CommentsLabel.setText(String.valueOf(Posts.get(i).getNumberOfComments()));
             this.handelComments();
+    }
+    }
+    public void viewLastposts(Event a)
+    {
+        if (i > 0){
             i--;
-        }
-        catch (Exception c)
-        {
-            i = 0;
-        }
-
-
-    }
-    public void viewNextposts(MouseEvent a) throws IOException {
-        try{
-
-            postNameLabe.setText(Posts.get(i).getAuthor());
+            postNameLabe.setText(Posts.get(i).getAuthorname());
             postContentLabel.setText(Posts.get(i).getContent());
             PostDateLabe.setText(Posts.get(i).getTimestamp());
-            SuggestedLabel.setText("Suggested");
+            if (Posts.get(i).getAuthor().equals(user.getUserName()))
+            {
+                SuggestedLabel.setText("Your post");
+            }
+            else
+                SuggestedLabel.setText("Suggested");
             LikesLabel.setText(String.valueOf(Posts.get(i).getReacts()));
             CommentsLabel.setText(String.valueOf(Posts.get(i).getNumberOfComments()));
+
+            //System.out.println(i);
             this.handelComments();
-            i++;
         }
-        catch (IndexOutOfBoundsException b){
-            i=0;
+        else {
+            this.viewLastpost();
+        }
+
+
+
     }
+    public void viewNextposts(Event a) throws IOException {
+        if (i < Posts.size()-1){
+            i++;
+            postNameLabe.setText(Posts.get(i).getAuthorname());
+            postContentLabel.setText(Posts.get(i).getContent());
+            PostDateLabe.setText(Posts.get(i).getTimestamp());
+            if (Posts.get(i).getAuthor().equals(user.getUserName()))
+            {
+                SuggestedLabel.setText("Your post");
+            }
+            else
+                SuggestedLabel.setText("Suggested");
+            LikesLabel.setText(String.valueOf(Posts.get(i).getReacts()));
+            CommentsLabel.setText(String.valueOf(Posts.get(i).getNumberOfComments()));
+
+            //System.out.println(i);
+            this.handelComments();
+        }
+        else {
+            this.viewFirstpost();
+        }
     }
+
+
     /*******************************************Add comments******************************************************/
     public void addComment (ActionEvent a)
     {
@@ -142,7 +189,8 @@ public class DashboardController {
         coment.setTimestamp(commentTime);
         coment.setAuthor(user.getName());
         Posts.get(i).addComment(coment);
-        DataTransfer.WriteCommentData(user.getName(),Comment,commentTime,Posts.get(i).getPostId());
+        DataTransfer.WriteCommentData(user.getName(),Comment,commentTime,i);
+        this.handelComments();
     }
     /*******************************************Switch Scenes*****************************************************/
     public void Addpost (ActionEvent a) throws IOException {
@@ -172,8 +220,13 @@ public class DashboardController {
         stage.setScene(scene);
         stage.show();
     }
-    public void FriendList (ActionEvent a) throws IOException {
-        parent = FXMLLoader.load(getClass().getResource("/FXML/Friends.fxml"));
+    public void Friends (ActionEvent a) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Friends.fxml"));
+        parent = loader.load();
+
+        FriendController Friend = loader.getController();
+        Friend.setUser(user);
+        //parent = FXMLLoader.load(getClass().getResource("/FXML/Friends.fxml"));
         stage = (Stage) ((Node)a.getSource()).getScene().getWindow();
 
         scene = new Scene(parent);

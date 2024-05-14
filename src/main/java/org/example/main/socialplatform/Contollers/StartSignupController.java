@@ -65,7 +65,12 @@ public class StartSignupController {
     AnchorPane EditProfileLabel;
 
     public void EditProfile (MouseEvent a) throws IOException {
-        parent = FXMLLoader.load(getClass().getResource("/FXML/EditProfile.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/EditProfile.fxml"));
+        parent = loader.load();
+
+        EditProfileController Edit = loader.getController();
+        Edit.setUser(user);
+        //parent = FXMLLoader.load(getClass().getResource("/FXML/EditProfile.fxml"));
         stage = (Stage) ((Node)a.getSource()).getScene().getWindow();
 
         scene = new Scene(parent);

@@ -120,10 +120,11 @@ public class PostController {
 
         Post post = new Post(content,postTime);
         post.setAuthor(user.getUserName());
+        post.setAuthorname(user.getName());
         Posts.add(post);
         user.addPost(post);
 
-        WritePostData(user.getUserName(),post.getContent(),postTime,0,0,post.getPostId());
+        WritePostData(user.getName(),user.getUserName(),post.getContent(),postTime,0,0,post.getPostId());
 
     }
 }

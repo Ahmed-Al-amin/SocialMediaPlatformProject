@@ -21,9 +21,12 @@ public class Main extends Application {
     public static ArrayList<Post> Posts = new ArrayList<>();
     public static ArrayList<Comment> comments = new ArrayList<>();
     public static ArrayList<Comment> postcomments = new ArrayList<>();
-    public static ArrayList<Comment> postcomment = new ArrayList<>();
     public static ArrayList<Post> userPosts = new ArrayList<>();
-    public static ArrayList<Friendship> Friendships = new ArrayList<>();
+    public static ArrayList<Friendship> FriendshipsPending = new ArrayList<>();
+    public static ArrayList<Friendship> FriendshipsAccepted = new ArrayList<>();
+    public static ArrayList<User> UserFriendAccepted = new ArrayList<>();
+    public static ArrayList<User> UserFriendPending = new ArrayList<>();
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -59,6 +62,7 @@ public class Main extends Application {
         DataTransfer.getAllUsers();
         DataTransfer.getAllPosts();
         DataTransfer.getAllComments();
+        DataTransfer.getAllFriends();
         DataTransfer.Organizing();
           launch(args);
 //        DataTransfer dd = new DataTransfer();

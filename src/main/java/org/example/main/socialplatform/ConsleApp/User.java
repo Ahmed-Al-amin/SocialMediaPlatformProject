@@ -25,7 +25,8 @@ public class User {
     private ArrayList<User> Friends = new ArrayList <User>();
 
     private ArrayList<Post> Posts = new ArrayList<Post>();
-    private ArrayList<Friendship> relations = new ArrayList<Friendship>();
+    private ArrayList<User> FriendsRequest = new ArrayList<User>();
+    private ArrayList<User> FriendsSending = new ArrayList<User>();
 
 
 
@@ -124,10 +125,6 @@ public class User {
 
         return Posts;
     }
-    public Post getOnePost(int postId) {
-
-        return getAllPosts().get(postId);
-    }
     public void addPost(Post post) {
 
         Posts.add(post) ;
@@ -140,15 +137,28 @@ public class User {
         Friends.remove(Friend_User);
     }
 
-
     public void AddFriend(User NewFriend) {
 
         Friends.add(NewFriend);
     }
+    public ArrayList<User>getFriendsRequest() {
+        return FriendsRequest;
+    }
+    public void RemoveFriendRequest(User Friend_User){
 
-    /*public String getBirthdateString() {
-        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
-        String formattedDate = dateFormat.format(getBirthdate());
-        return formattedDate;
-    }*/
+        FriendsRequest.remove(Friend_User);
+    }
+
+    public void AddFriendRequest(User NewFriend) {
+
+        FriendsRequest.add(NewFriend);
+    }
+    public void AddFriendSending(User NewFriend) {
+
+        FriendsSending.add(NewFriend);
+    }
+    public ArrayList<User>getFriendsSending() {
+        return FriendsSending;
+    }
+
 }

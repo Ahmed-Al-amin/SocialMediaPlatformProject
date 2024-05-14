@@ -11,9 +11,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="806.0" prefWidth="1287.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.main.socialplatform.Contollers.PostController">
+<AnchorPane prefHeight="800.0" prefWidth="1287.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.main.socialplatform.Contollers.PostController">
    <children>
-      <VBox prefHeight="806.0" prefWidth="194.0" spacing="60.0" style="-fx-background-color: grey; -fx-border-color: black; -fx-border-width: 2;">
+      <VBox prefHeight="800.0" prefWidth="194.0" spacing="60.0" style="-fx-background-color: grey; -fx-border-color: black; -fx-border-width: 2;">
          <children>
             <VBox prefHeight="164.0" prefWidth="140.0" spacing="50.0">
                <children>
@@ -34,8 +34,7 @@
             </VBox>
             <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#EditProfile" prefHeight="36.0" prefWidth="140.0" text="Edit profile" />
             <Button fx:id="SeePostsButton" mnemonicParsing="false" onAction="#Dashboard" prefHeight="38.0" prefWidth="140.0" text="See posts" />
-            <Button fx:id="SearchButton" mnemonicParsing="false" onAction="#FriendList" prefHeight="42.0" prefWidth="140.0" text="Friends" />
-            <Button fx:id="SeelistButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="140.0" text="See friend list" />
+            <Button fx:id="SearchButton" mnemonicParsing="false" prefHeight="42.0" prefWidth="140.0" text="Friends" />
             <Line endX="30.678668975830078" startX="-100.0" strokeWidth="3.0" style="-fx-fill: black;" />
             <Button fx:id="LogoutButton" mnemonicParsing="false" onAction="#Logout" prefHeight="39.0" prefWidth="140.0" text="Logout" />
          </children>
@@ -43,7 +42,7 @@
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
          </padding>
       </VBox>
-      <VBox layoutX="193.0" prefHeight="806.0" prefWidth="673.0" spacing="100.0" style="-fx-background-color: rgb(200,200,200); -fx-border-color: black; -fx-border-width: 2;">
+      <VBox layoutX="193.0" prefHeight="800.0" prefWidth="673.0" spacing="100.0" style="-fx-background-color: rgb(200,200,200); -fx-border-color: black; -fx-border-width: 2;">
          <children>
             <Label alignment="CENTER" prefHeight="57.0" prefWidth="700.0" text="Add new post">
                <font>
@@ -65,18 +64,21 @@
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
          </padding>
       </VBox>
-      <VBox layoutX="867.0" layoutY="-1.0" prefHeight="806.0" prefWidth="522.0">
+      <VBox layoutX="860.0" prefHeight="800.0" prefWidth="690.0" style="-fx-background-color: rgb(200,200,200); -fx-border-color: black; -fx-border-width: 2;">
          <children>
             <Label prefHeight="69.0" prefWidth="523.0" text="your posts history">
                <font>
                   <Font name="Calibri Bold Italic" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="oldPostsLoabel" alignment="TOP_LEFT" prefHeight="737.0" prefWidth="522.0" text="your posts">
+            <Label fx:id="oldPostsLoabel" alignment="TOP_LEFT" prefHeight="738.0" prefWidth="578.0" text="your posts">
                <font>
                   <Font name="Calibri Bold Italic" size="18.0" />
                </font>
             </Label>
-         </children></VBox>
+         </children>
+         <padding>
+            <Insets left="25.0" />
+         </padding></VBox>
    </children>
 </AnchorPane>

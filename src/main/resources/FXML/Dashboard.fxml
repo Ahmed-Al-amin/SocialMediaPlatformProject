@@ -12,9 +12,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="801.0" prefWidth="1555.0" style="-fx-background-color: rgb(200,200,200);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.main.socialplatform.Contollers.DashboardController">
+<AnchorPane prefHeight="800.0" prefWidth="1521.0" style="-fx-background-color: rgb(200,200,200);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.main.socialplatform.Contollers.DashboardController">
     <children>
-        <VBox prefHeight="806.0" prefWidth="194.0" spacing="60.0" style="-fx-background-color: grey; -fx-border-color: black; -fx-border-width: 2;">
+        <VBox prefHeight="800.0" prefWidth="194.0" spacing="60.0" style="-fx-background-color: grey; -fx-border-color: black; -fx-border-width: 2;">
             <children>
                 <VBox prefHeight="164.0" prefWidth="140.0" spacing="50.0">
                     <children>
@@ -35,8 +35,7 @@
                 </VBox>
                 <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#EditProfile" prefHeight="36.0" prefWidth="140.0" text="Edit profile" />
             <Button fx:id="AddPostButton" mnemonicParsing="false" onAction="#Addpost" prefHeight="37.0" prefWidth="136.0" text="Add post" />
-                <Button fx:id="FriendsButton" mnemonicParsing="false" onAction="#FriendList" prefHeight="42.0" prefWidth="140.0" text="Friends" />
-                <Button fx:id="SeelistButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="140.0" text="See friend list" />
+                <Button fx:id="FriendsButton" mnemonicParsing="false" onAction="#Friends" prefHeight="42.0" prefWidth="140.0" text="Friends" />
                 <Line endX="30.678668975830078" startX="-100.0" strokeWidth="3.0" style="-fx-fill: black;" />
                 <Button fx:id="LogoutButton" mnemonicParsing="false" onAction="#Logout" prefHeight="39.0" prefWidth="140.0" text="Logout" />
             </children>
@@ -44,7 +43,7 @@
                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
             </padding>
         </VBox>
-        <VBox layoutX="194.0" prefHeight="806.0" prefWidth="754.0" spacing="30.0" style="-fx-border-color: black; -fx-border-width: 2;">
+        <VBox layoutX="194.0" prefHeight="800.0" prefWidth="723.0" spacing="30.0" style="-fx-border-color: black; -fx-border-width: 2;">
             <children>
                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0" style="-fx-background-color: rgb(230,230,230);">
                     <children>
@@ -96,18 +95,6 @@
                             </padding>
                         </VBox>
                         <VBox layoutX="35.0" layoutY="35.0" prefHeight="100.0" prefWidth="154.0" spacing="10.0">
-                            <children>
-                                <Label fx:id="CommentsLabel" prefHeight="19.0" prefWidth="127.0" text="Number of comments" />
-                                <Button fx:id="commentButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="134.0" text="Comment">
-                                    <graphic>
-                                        <ImageView fitHeight="35.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../Photos/images__1_-removebg-preview%20(1).png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                </Button>
-                            </children>
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -119,16 +106,34 @@
                 </HBox>
                 <HBox prefHeight="95.0" prefWidth="649.0" spacing="500.0">
                     <children>
-                        <ImageView fx:id="perviosPostLabel" fitHeight="50.0" fitWidth="80.0" onMouseClicked="#viewLastposts" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../Photos/arrow-removebg-preview.png" />
-                            </image>
+                  <VBox fx:id="Lastpost" onMouseClicked="#viewLastposts" prefHeight="83.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="nextPostLabel" fitHeight="50.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Photos/arrow-removebg-preview.png" />
+                           </image>
                         </ImageView>
-                        <ImageView fx:id="nextPostLabel" fitHeight="50.0" fitWidth="80.0" onMouseClicked="#viewNextposts" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-                            <image>
-                                <Image url="@../Photos/arrow-removebg-preview.png" />
-                            </image>
+                        <Button fx:id="LastPostButton" mnemonicParsing="false" prefHeight="29.0" prefWidth="100.0" style="-fx-background-color: rgb(200,200,200);" text="Last post">
+                           <font>
+                              <Font name="Calibri Bold Italic" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="Nextpost" layoutX="582.0" layoutY="10.0" onMouseClicked="#viewNextposts" prefHeight="83.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                           <image>
+                              <Image url="@../Photos/arrow-removebg-preview.png" />
+                           </image>
                         </ImageView>
+                        <Button fx:id="NextPostButton" mnemonicParsing="false" prefHeight="29.0" prefWidth="100.0" style="-fx-background-color: rgb(200,200,200);" text="Next post">
+                           <font>
+                              <Font name="Calibri Bold Italic" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
                     </children>
                 </HBox>
             </children>
@@ -136,23 +141,33 @@
                 <Insets bottom="25.0" left="25.0" right="25.0" top="35.0" />
             </padding>
         </VBox>
-        <VBox layoutX="948.0" prefHeight="806.0" prefWidth="603.0" spacing="75.0" style="-fx-border-color: black; -fx-border-width: 2;">
+        <VBox layoutX="915.0" prefHeight="800.0" prefWidth="638.0" spacing="75.0" style="-fx-border-color: black; -fx-border-width: 2;">
          <children>
             <Label prefHeight="58.0" prefWidth="549.0" text="Comments on this post">
                <font>
                   <Font name="Calibri Bold Italic" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="AllCommentsLabel" prefHeight="258.0" prefWidth="549.0" text="Comments">
+            <Label fx:id="AllCommentsLabel" alignment="TOP_LEFT" prefHeight="270.0" prefWidth="550.0" text="Comments">
                <font>
                   <Font name="Calibri Bold Italic" size="18.0" />
                </font>
             </Label>
+                    <Label fx:id="CommentsLabel" prefHeight="19.0" prefWidth="127.0" text="Number of comments" />
             <TextField fx:id="CommentField" prefHeight="54.0" prefWidth="549.0" promptText="Write your comment" />
-            <Button fx:id="WriteCommentButton" mnemonicParsing="false" onAction="#addComment" text="Enter" />
+                    <Button fx:id="commentButton" mnemonicParsing="false" onAction="#addComment" prefHeight="35.0" prefWidth="134.0" text="Comment">
+                        <graphic>
+                            <ImageView fitHeight="35.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@../Photos/images__1_-removebg-preview%20(1).png" />
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
          </children>
          <padding>
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-         </padding></VBox>
+         </padding>
+      </VBox>
     </children>
 </AnchorPane>
