@@ -34,7 +34,7 @@
             </VBox>
             <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#EditProfile" prefHeight="36.0" prefWidth="140.0" text="Edit profile" />
             <Button fx:id="AddPostButton" mnemonicParsing="false" onAction="#Addpost" prefHeight="37.0" prefWidth="136.0" text="Add post" />
-            <Button fx:id="FriendsButton" mnemonicParsing="false" prefHeight="42.0" prefWidth="140.0" text="Friends" />
+            <Button fx:id="FriendsButton" mnemonicParsing="false" onAction="#Dashboard" prefHeight="42.0" prefWidth="140.0" text="See Posts" />
             <Line endX="30.678668975830078" startX="-100.0" strokeWidth="3.0" style="-fx-fill: black;" />
             <Button fx:id="LogoutButton" mnemonicParsing="false" onAction="#Logout" prefHeight="39.0" prefWidth="140.0" text="Logout" />
          </children>
@@ -49,7 +49,7 @@
                   <Font name="Calibri Bold Italic" size="24.0" />
                </font>
             </Label>
-            <Label alignment="TOP_LEFT" prefHeight="613.0" prefWidth="388.0" text="Friends list">
+            <Label fx:id="FriendListLabel" alignment="TOP_LEFT" prefHeight="613.0" prefWidth="388.0" text="Friends list">
                <font>
                   <Font name="Calibri Bold Italic" size="24.0" />
                </font>
@@ -130,13 +130,13 @@
       </AnchorPane>
       <AnchorPane layoutX="918.0" layoutY="533.0" prefHeight="266.0" prefWidth="346.0" style="-fx-background-color: rgb(200,200,200);">
          <children>
-            <Label layoutX="16.0" layoutY="25.0" prefHeight="36.0" prefWidth="314.0" text="Enter your friend username to delete">
+            <Label layoutX="16.0" layoutY="25.0" prefHeight="36.0" prefWidth="314.0" text="Enter your friend username to accept">
                <font>
                   <Font name="Calibri Bold Italic" size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="101.0" layoutY="81.0" prefHeight="36.0" prefWidth="186.0" style="-fx-background-color: white;" />
-            <Button layoutX="126.0" layoutY="197.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="140.0" style="-fx-background-radius: 25;" text="Enter">
+            <TextField fx:id="AcceptField" layoutX="101.0" layoutY="81.0" prefHeight="36.0" prefWidth="186.0" promptText="Username" style="-fx-background-color: white;" />
+            <Button layoutX="126.0" layoutY="197.0" mnemonicParsing="false" onAction="#AcceptFriend" prefHeight="27.0" prefWidth="140.0" style="-fx-background-radius: 25;" text="Enter">
                <font>
                   <Font name="Calibri Bold Italic" size="14.0" />
                </font>

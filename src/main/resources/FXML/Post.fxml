@@ -34,7 +34,7 @@
             </VBox>
             <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#EditProfile" prefHeight="36.0" prefWidth="140.0" text="Edit profile" />
             <Button fx:id="SeePostsButton" mnemonicParsing="false" onAction="#Dashboard" prefHeight="38.0" prefWidth="140.0" text="See posts" />
-            <Button fx:id="SearchButton" mnemonicParsing="false" prefHeight="42.0" prefWidth="140.0" text="Friends" />
+            <Button fx:id="SearchButton" mnemonicParsing="false" onAction="#Friends" prefHeight="42.0" prefWidth="140.0" text="Friends" />
             <Line endX="30.678668975830078" startX="-100.0" strokeWidth="3.0" style="-fx-fill: black;" />
             <Button fx:id="LogoutButton" mnemonicParsing="false" onAction="#Logout" prefHeight="39.0" prefWidth="140.0" text="Logout" />
          </children>

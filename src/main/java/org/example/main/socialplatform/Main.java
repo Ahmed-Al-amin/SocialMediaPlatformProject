@@ -25,7 +25,8 @@ public class Main extends Application {
     public static ArrayList<Friendship> FriendshipsPending = new ArrayList<>();
     public static ArrayList<Friendship> FriendshipsAccepted = new ArrayList<>();
     public static ArrayList<User> UserFriendAccepted = new ArrayList<>();
-    public static ArrayList<User> UserFriendPending = new ArrayList<>();
+    public static ArrayList<User> UserFriendRequest = new ArrayList<>();
+    public static ArrayList<User> UserFriendSending = new ArrayList<>();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -57,16 +58,18 @@ public class Main extends Application {
 
     }
 
-
-    public static void main(String[] args) {
+    public static void StartPrograme ()
+    {
         DataTransfer.getAllUsers();
         DataTransfer.getAllPosts();
         DataTransfer.getAllComments();
         DataTransfer.getAllFriends();
         DataTransfer.Organizing();
+    }
+    public static void main(String[] args) {
+          Main.StartPrograme();
           launch(args);
-//        DataTransfer dd = new DataTransfer();
-//        dd.writedata();
+
     }
     }
 

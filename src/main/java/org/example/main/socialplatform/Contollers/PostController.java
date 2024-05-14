@@ -76,12 +76,12 @@ public class PostController {
         stage.setScene(scene);
         stage.show();
     }
-    public void FriendList (ActionEvent a) throws IOException {
+    public void Friends (ActionEvent a) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Friends.fxml"));
         parent = loader.load();
-        SearchFriend friend = loader.getController();
-        friend.setUser(user);
 
+        FriendController Friend = loader.getController();
+        Friend.setUser(user);
         //parent = FXMLLoader.load(getClass().getResource("/FXML/Friends.fxml"));
         stage = (Stage) ((Node)a.getSource()).getScene().getWindow();
 
@@ -90,6 +90,7 @@ public class PostController {
         stage.setScene(scene);
         stage.show();
     }
+
 
 
     public void Logout(ActionEvent a) throws IOException {

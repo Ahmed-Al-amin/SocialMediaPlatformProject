@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import static org.example.main.socialplatform.Main.StartPrograme;
 import static org.example.main.socialplatform.Main.userPosts;
 
 public class FriendController {
@@ -33,6 +34,8 @@ public class FriendController {
     public Button addButton;
     public Label addLabel;
     public Label RequestLabel;
+    public Label FriendListLabel;
+    public TextField AcceptField;
     User user;
     private Stage stage;
     private Scene scene;
@@ -41,6 +44,7 @@ public class FriendController {
     {
         this.user = user;
         this.friendRequest();
+        this.friendsview();
 
     }
     /**************************************************Search Friend************************************************/
@@ -86,7 +90,8 @@ public class FriendController {
             }
 
         }
-        if (!(user2.equals(user.getUserName())) || userSearch1 == null) {
+
+        if ((!(user2.equals(user.getUserName())) || userSearch1 == null)) {
 
 
             LocalDateTime now = LocalDateTime.now();
@@ -99,23 +104,78 @@ public class FriendController {
             Friendship friend = new Friendship(user, userSearch1, "Pending", FriendTime);
             Main.FriendshipsPending.add(friend);
             DataTransfer.WriteFriendsData(user.getUserName(), user2, FriendTime, "Pending");
+            DataTransfer.Organizing();
+            this.friendRequest();
         }
     }
-public void friendRequest()
-{
-    Main.UserFriendPending = user.getFriendsRequest();
-    String STR = "";
-    for (User user : Main.UserFriendPending) {
-        STR += user.getName() + "\n";
-        STR += user.getUserName();
-        STR += "\n--------------------------------------------------\n";
-    }
-    if (STR.equals(""))
-        RequestLabel.setText("No requests");
-    else
-        RequestLabel.setText(STR);
+    public void AcceptFriend()
+    {
+        String user2 = AcceptField.getText();
+        User userSearch1 = null;
+        for (User usersearch : Main.Users)
+        {
+            if (usersearch.getUserName().equals(user2))
+            {
+                userSearch1 = usersearch;
+                break;
+            }
 
-}
+        }
+        Main.UserFriendRequest = user.getFriendsRequest();
+        if (user.getFriendsRequest().size() > 0) {
+            for (User userSearch : Main.UserFriendRequest) {
+                if (userSearch1.equals(userSearch)) {
+                    LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+                    String formattedTime = timeFormatter.format(now);
+                    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    String formattedDate = dateFormatter.format(now);
+                    String FriendTime = formattedTime + "  " + formattedDate;
+                    userSearch1.AddFriend(userSearch);
+                    userSearch.AddFriend(userSearch1);
+                    DataTransfer.UpdateFriends(user.getUserName(), "Accepted", FriendTime);
+
+
+                    break;
+                }
+            }
+            StartPrograme();
+            DataTransfer.Organizing();
+            this.friendsview();
+            this.friendRequest();
+        }
+    }
+    public void friendRequest()
+    {
+        Main.UserFriendRequest = user.getFriendsRequest();
+        String STR = "";
+        for (User user : Main.UserFriendRequest) {
+            STR += user.getName() + "\n";
+            STR += user.getUserName();
+            STR += "\n--------------------------------------------------\n";
+        if (STR.equals(""))
+            RequestLabel.setText("No requests");
+        else
+            RequestLabel.setText(STR);
+    }
+    }
+
+    public void friendsview ()
+    {
+        Main.UserFriendAccepted = user.getFriends();
+        String STR = "";
+        for (User user : Main.UserFriendAccepted) {
+            STR += user.getName() + "\n";
+            STR += user.getUserName();
+            STR += "\n--------------------------------------------------\n";
+        }
+        if (STR.equals(""))
+            FriendListLabel.setText("No Friends");
+        else
+            FriendListLabel.setText(STR);
+    }
+
+
 
 
 
@@ -147,6 +207,20 @@ public void friendRequest()
         EditProfileController Edit = loader.getController();
         Edit.setUser(user);
         //parent = FXMLLoader.load(getClass().getResource("/FXML/EditProfile.fxml"));
+        stage = (Stage) ((Node)a.getSource()).getScene().getWindow();
+
+        scene = new Scene(parent);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void Dashboard (ActionEvent a) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Dashboard.fxml"));
+        parent = loader.load();
+        DashboardController dash = loader.getController();
+        dash.setUser(user);
+
+        //parent = FXMLLoader.load(getClass().getResource("/FXML/Dashboard.fxml"));
         stage = (Stage) ((Node)a.getSource()).getScene().getWindow();
 
         scene = new Scene(parent);

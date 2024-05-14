@@ -338,10 +338,10 @@ public class DataTransfer {
             {
                 if (userSearch.equals(friend.getUser1()))
                 {
-                    userSearch.AddFriend(friend.getUser1());
+                    userSearch.AddFriend(friend.getUser2());
                 }
                 else if (userSearch.equals(friend.getUser2())){
-                    userSearch.AddFriend(friend.getUser2());
+                    userSearch.AddFriend(friend.getUser1());
                 }
             }
         }
@@ -380,6 +380,28 @@ public class DataTransfer {
 
         }
     }
+    /***************************************************************************************************************/
+    public static void UpdateFriends(String Username, String status, String time)
+    {
+        String url = "jdbc:sqlite:Database.db";
+        int userId = 1;
+
+        try (Connection conn = DriverManager.getConnection(url)) {
+            String updateSql = "UPDATE Friends SET Status = ?, time = ? WHERE username2 = ?";
+            PreparedStatement pstmt = conn.prepareStatement(updateSql);
+
+            pstmt.setString(1, status);
+            pstmt.setString(2, time);
+            pstmt.setString(3, Username);
+
+            pstmt.executeUpdate();
+            System.out.println("Status updated successfully!");
+        } catch (SQLException e) {
+            System.err.println("Error updating Status: " + e.getMessage());
+
+        }
+    }
+
 }
 
 

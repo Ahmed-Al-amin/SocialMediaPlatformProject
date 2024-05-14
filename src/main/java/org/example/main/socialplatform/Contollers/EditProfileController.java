@@ -202,7 +202,7 @@ public class EditProfileController {
     public void FriendList (ActionEvent a) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Friends.fxml"));
         parent = loader.load();
-        SearchFriend friend = loader.getController();
+        FriendController friend = loader.getController();
         friend.setUser(user);
 
         //parent = FXMLLoader.load(getClass().getResource("/FXML/Friends.fxml"));
@@ -212,6 +212,19 @@ public class EditProfileController {
 
         stage.setScene(scene);
         stage.show();
+    }
+    public void Addpost (ActionEvent a) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Post.fxml"));
+        parent = loader.load();
+
+        PostController post = loader.getController();
+        post.setUser(user);
+        //parent = FXMLLoader.load(getClass().getResource("/FXML/Post.fxml"));
+        stage = (Stage) ((Node)a.getSource()).getScene().getWindow();
+        scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.show();
+
     }
 
 
