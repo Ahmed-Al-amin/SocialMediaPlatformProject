@@ -64,7 +64,7 @@ public class DashboardController {
 
     public void handelComments()
     {
-
+        AllCommentsLabel.setText("");
         postcomments = Posts.get(i).getAllComments();
         String STR = "";
         for (Comment commentSearch : postcomments) {
@@ -84,12 +84,22 @@ public class DashboardController {
         postNameLabe.setText(Posts.getFirst().getAuthorname());
         postContentLabel.setText(Posts.getFirst().getContent());
         PostDateLabe.setText(Posts.getFirst().getTimestamp());
-        if (Posts.get(i).getAuthor().equals(user.getUserName()))
-        {
-            SuggestedLabel.setText("Your post");
-        }
-        else
-            SuggestedLabel.setText("Suggested");
+            if (Posts.get(i).getAuthor().equals(user.getUserName()))
+            {
+                SuggestedLabel.setText("Your post");
+            }
+
+            else{
+                boolean flage = false;
+                for (User userSearch : user.getFriends())
+                    if (userSearch.getUserName().equals(Posts.get(i).getAuthor()))
+                    {
+                        flage = true;}
+                if (flage)
+                    SuggestedLabel.setText("your friend post");
+                else
+                    SuggestedLabel.setText("Suggested");
+            }
         LikesLabel.setText(String.valueOf(Posts.getFirst().getReacts()));
         CommentsLabel.setText(String.valueOf(Posts.getFirst().getNumberOfComments()));
             this.handelComments();
@@ -112,8 +122,18 @@ public class DashboardController {
             {
                 SuggestedLabel.setText("Your post");
             }
-            else
-                SuggestedLabel.setText("Suggested");
+
+            else{
+                boolean flage = false;
+                for (User userSearch : user.getFriends())
+                    if (userSearch.getUserName().equals(Posts.get(i).getAuthor()))
+                    {
+                        flage = true;}
+                if (flage)
+                    SuggestedLabel.setText("your friend post");
+                else
+                    SuggestedLabel.setText("Suggested");
+            }
             LikesLabel.setText(String.valueOf(Posts.get(i).getReacts()));
             CommentsLabel.setText(String.valueOf(Posts.get(i).getNumberOfComments()));
             this.handelComments();
@@ -130,8 +150,18 @@ public class DashboardController {
             {
                 SuggestedLabel.setText("Your post");
             }
-            else
-                SuggestedLabel.setText("Suggested");
+
+            else{
+                boolean flage = false;
+                for (User userSearch : user.getFriends())
+                    if (userSearch.getUserName().equals(Posts.get(i).getAuthor()))
+                    {
+                        flage = true;}
+                if (flage)
+                    SuggestedLabel.setText("your friend post");
+                else
+                    SuggestedLabel.setText("Suggested");
+            }
             LikesLabel.setText(String.valueOf(Posts.get(i).getReacts()));
             CommentsLabel.setText(String.valueOf(Posts.get(i).getNumberOfComments()));
 
@@ -155,8 +185,18 @@ public class DashboardController {
             {
                 SuggestedLabel.setText("Your post");
             }
-            else
-                SuggestedLabel.setText("Suggested");
+
+            else{
+                boolean flage = false;
+                for (User userSearch : user.getFriends())
+                    if (userSearch.getUserName().equals(Posts.get(i).getAuthor()))
+                    {
+                        flage = true;}
+                if (flage)
+                    SuggestedLabel.setText("your friend post");
+                else
+                    SuggestedLabel.setText("Suggested");
+            }
             LikesLabel.setText(String.valueOf(Posts.get(i).getReacts()));
             CommentsLabel.setText(String.valueOf(Posts.get(i).getNumberOfComments()));
 

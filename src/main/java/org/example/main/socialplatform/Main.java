@@ -22,11 +22,12 @@ public class Main extends Application {
     public static ArrayList<Comment> comments = new ArrayList<>();
     public static ArrayList<Comment> postcomments = new ArrayList<>();
     public static ArrayList<Post> userPosts = new ArrayList<>();
-    public static ArrayList<Friendship> FriendshipsPending = new ArrayList<>();
+    public static ArrayList<Friendship> Friendships = new ArrayList<>();
     public static ArrayList<Friendship> FriendshipsAccepted = new ArrayList<>();
+    public static ArrayList<Friendship> FriendshipsPending = new ArrayList<>();
     public static ArrayList<User> UserFriendAccepted = new ArrayList<>();
     public static ArrayList<User> UserFriendRequest = new ArrayList<>();
-    public static ArrayList<User> UserFriendSending = new ArrayList<>();
+    //public static ArrayList<User> UserFriendSending = new ArrayList<>();
 
     @Override
     public void start(Stage primaryStage) throws Exception {

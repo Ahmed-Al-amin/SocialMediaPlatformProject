@@ -26,7 +26,7 @@ public class User {
 
     private ArrayList<Post> Posts = new ArrayList<Post>();
     private ArrayList<User> FriendsRequest = new ArrayList<User>();
-    private ArrayList<User> FriendsSending = new ArrayList<User>();
+
 
 
 
@@ -153,12 +153,7 @@ public class User {
 
         FriendsRequest.add(NewFriend);
     }
-    public void AddFriendSending(User NewFriend) {
 
-        FriendsSending.add(NewFriend);
-    }
-    public ArrayList<User>getFriendsSending() {
-        return FriendsSending;
-    }
+
 
 }

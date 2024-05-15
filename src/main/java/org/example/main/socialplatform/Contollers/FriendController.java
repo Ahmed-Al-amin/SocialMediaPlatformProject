@@ -43,9 +43,7 @@ public class FriendController {
     public void setUser(User user)
     {
         this.user = user;
-        this.friendRequest();
-        this.friendsview();
-
+        this.reset();
     }
     /**************************************************Search Friend************************************************/
     public void Search(ActionEvent a)
@@ -80,20 +78,19 @@ public class FriendController {
     /*****************************************************Add Friend *************************************************/
     public void AddFriend (ActionEvent a) {
         String user2 = addField.getText();
-        User userSearch1 = null;
+        User user22 = null;
+        boolean flage = false;
         for (User usersearch : Main.Users)
         {
             if (usersearch.getUserName().equals(user2))
             {
-                userSearch1 = usersearch;
+                user22 = usersearch;
+                flage = true;
                 break;
             }
 
         }
-
-        if ((!(user2.equals(user.getUserName())) || userSearch1 == null)) {
-
-
+        if (flage) {
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
             String formattedTime = timeFormatter.format(now);
@@ -101,50 +98,73 @@ public class FriendController {
             String formattedDate = dateFormatter.format(now);
             String FriendTime = formattedTime + "  " + formattedDate;
 
-            Friendship friend = new Friendship(user, userSearch1, "Pending", FriendTime);
-            Main.FriendshipsPending.add(friend);
-            DataTransfer.WriteFriendsData(user.getUserName(), user2, FriendTime, "Pending");
+            Friendship friend = new Friendship(user, user22, "Pending", FriendTime);
+            Main.Friendships.add(friend);
+            user22.AddFriendRequest(user);
+            DataTransfer.WriteFriendsData(user.getUserName(), user22.getUserName(), FriendTime, "Pending");
             DataTransfer.Organizing();
             this.friendRequest();
         }
     }
+    int index = 0;
     public void AcceptFriend()
     {
         String user2 = AcceptField.getText();
-        User userSearch1 = null;
+        boolean flage = false;
+        User user22 = null;
         for (User usersearch : Main.Users)
         {
             if (usersearch.getUserName().equals(user2))
             {
-                userSearch1 = usersearch;
+                flage = true;
                 break;
             }
 
         }
+        if (flage){
+        boolean flage2 = false;
         Main.UserFriendRequest = user.getFriendsRequest();
-        if (user.getFriendsRequest().size() > 0) {
-            for (User userSearch : Main.UserFriendRequest) {
-                if (userSearch1.equals(userSearch)) {
-                    LocalDateTime now = LocalDateTime.now();
-                    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-                    String formattedTime = timeFormatter.format(now);
-                    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                    String formattedDate = dateFormatter.format(now);
-                    String FriendTime = formattedTime + "  " + formattedDate;
-                    userSearch1.AddFriend(userSearch);
-                    userSearch.AddFriend(userSearch1);
-                    DataTransfer.UpdateFriends(user.getUserName(), "Accepted", FriendTime);
 
-
-                    break;
-                }
+        for (User userSearch : Main.UserFriendRequest)
+        {
+            if (user2.equals(userSearch.getUserName()))
+            {
+                user22 = userSearch;
+                LocalDateTime now = LocalDateTime.now();
+                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+                String formattedTime = timeFormatter.format(now);
+                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                String formattedDate = dateFormatter.format(now);
+                String FriendTime = formattedTime + "  " + formattedDate;
+                user.AddFriend(userSearch);
+                userSearch.AddFriend(user);
+                user.getFriendsRequest().remove(user22);
+                DataTransfer.UpdateFriends(user.getUserName(), "Accepted", FriendTime);
+                flage2 = true;
+                break;
             }
-            StartPrograme();
-            DataTransfer.Organizing();
-            this.friendsview();
-            this.friendRequest();
+        }
+        if (flage2)
+        {
+            Main.UserFriendRequest.remove(user22);
+            user.getFriendsRequest().remove(user22);
+        }
+        //this.friendsview();
+        //this.friendRequest();
+            this.reset();
         }
     }
+
+    public void reset()
+    {
+        RequestLabel.setText("");
+        FriendListLabel.setText("");
+        this.friendsview();
+        this.friendRequest();
+
+    }
+
+
     public void friendRequest()
     {
         Main.UserFriendRequest = user.getFriendsRequest();

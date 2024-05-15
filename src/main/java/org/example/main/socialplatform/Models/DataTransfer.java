@@ -53,7 +53,7 @@ public class DataTransfer {
                     + "    name TEXT,\n"
                     + "    content TEXT,\n"
                     + "    time TEXT,\n"
-                    + "    PostId INTGER \n"
+                    + "    PostId INTEGER \n"
                     + ");";
 
             // Execute the SQL query to create the table
@@ -272,6 +272,7 @@ public class DataTransfer {
                 Comment comment = new Comment(content,username,time,postId);
                 Main.comments.add(comment);
                 System.out.println("Success in read all comments");
+
             }
         }  catch (SQLException e) {
             System.out.println("Error reading comments from the database: " + e.getMessage());
@@ -320,6 +321,7 @@ public class DataTransfer {
                 if (coment.getPostId() == post.getId())
                 {
                     post.addComment(coment);
+                    break;
                 }
             }
         }
@@ -349,11 +351,7 @@ public class DataTransfer {
         {
             for (User userSearch : Main.Users)
             {
-                if (userSearch.equals(friend.getUser1()))
-                {
-                    userSearch.AddFriendSending(friend.getUser2());
-                }
-                else if (userSearch.equals(friend.getUser2())){
+                if (userSearch.equals(friend.getUser2())){
                     userSearch.AddFriendRequest(friend.getUser1());
                 }
             }
