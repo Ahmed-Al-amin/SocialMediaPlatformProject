@@ -169,7 +169,7 @@ public class EditProfileController {
             flage6 = true;
             ageLabel.setVisible(false);
         }
-        /***********************************************Gender handling****************************************************/
+        /***********************************************Gender handling************************************************/
 
         String gender = "";
         boolean flage7 = true;
@@ -182,7 +182,7 @@ public class EditProfileController {
             flage7 = true;
             gender = "Female";
         }
-        /***************************************bio******************************************************************/
+        /***************************************************bio******************************************************/
         String bio ;
         bio = bioField.getText();
         if (flage0 && flage4 && flage5 && flage6 && flage7){
