@@ -76,5 +76,7 @@ This is a basic framework for a social media platform.
 You can extend the functionality by adding features like posts, comments, friend connections, etc.
 Refer to the Java source code for details on existing functionalities and potential modification points.
 
+Video for the ptoject while running:
 
+https://drive.google.com/drive/folders/1P3z_QbvU6J_5TAQP4uFYb7xB1TlCuocU?usp=sharing
 
