@@ -60,7 +60,7 @@ public class FriendController {
                     str += searchuser.getName() + "\n";
                     str += searchuser.getUserName() ;
                     str += "\n---------------\n";
-                    System.out.println(str);
+                    //System.out.println(str);
                 }
             }
             if (str.equals(""))

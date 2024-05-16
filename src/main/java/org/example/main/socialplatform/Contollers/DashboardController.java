@@ -308,17 +308,17 @@ public class DashboardController {
         DataTransfer.WriteCommentData(user.getName(),Comment,commentTime,i);
         this.handelComments();
     }
-    public void addLike (ActionEvent a)
-    {
-
-        for (Likes likes : Main.likes)
-        {
-            if (user.getUserName().equals(likes.getusers()))
-            {
-
-            }
-        }
-    }
+//    public void addLike (ActionEvent a)
+//    {
+//
+//        for (Likes likes : Main.likes)
+//        {
+//            if (user.getUserName().equals(likes.getusers()))
+//            {
+//
+//            }
+//        }
+//    }
     /*******************************************Switch Scenes*****************************************************/
     public void Addpost (ActionEvent a) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Post.fxml"));

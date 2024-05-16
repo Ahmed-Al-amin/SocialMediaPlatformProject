@@ -33,7 +33,7 @@ public class PostController {
     public void setUser(User user)
     {
         this.user = user;
-        System.out.println(user.getUserName());
+        //System.out.println(user.getUserName());
         this.oldPosts();
     }
     public void oldPosts()

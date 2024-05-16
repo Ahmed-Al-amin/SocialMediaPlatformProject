@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.example.main.socialplatform.ConsleApp.*;
 import org.example.main.socialplatform.Models.DataTransfer;
-import org.example.main.socialplatform.Models.Model;
+
 
 import java.util.ArrayList;
 

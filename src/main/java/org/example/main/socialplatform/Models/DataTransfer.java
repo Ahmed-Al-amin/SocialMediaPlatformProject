@@ -422,7 +422,7 @@ public class DataTransfer {
         int userId = 1;
 
         try (Connection conn = DriverManager.getConnection(url)) {
-            String updateSql = "UPDATE Users SET name = ?, phoneNumber = ?, email = ?, age = ?, gender = ?,bio = ?, WHERE username = ?";
+            String updateSql = "UPDATE Users SET name = ?, phoneNumber = ?, email = ?, age = ?, gender = ?,bio = ? WHERE username = ?";
             PreparedStatement pstmt = conn.prepareStatement(updateSql);
             pstmt.setString(1, name);
             pstmt.setString(2, phone);
@@ -484,6 +484,21 @@ public class DataTransfer {
         }
 
         return usernames;
+    }
+    public static String Getbio(String username) {
+        String url = "jdbc:sqlite:Database.db";
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement("SELECT bio FROM Users WHERE username = ?")) {
+
+            pstmt.setString(1, username);
+            ResultSet resultSet = pstmt.executeQuery();
+            String bio = resultSet.getString("bio");
+            return bio;
+
+        } catch (SQLException e) {
+            System.out.println("Error getting bio: " + e.getMessage());
+            return null;
+        }
     }
 
     public static int DeleteLike(String username, int postId) {

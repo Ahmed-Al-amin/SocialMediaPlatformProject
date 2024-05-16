@@ -5,7 +5,7 @@
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\Ahmed Al-Amin\OneDrive\Desktop\OOP Project\Social media platform\Database.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\Ahmed Al-Amin\OneDrive\Desktop\Ahmed Alamin\Social media platform project\Social media platform\Database.db</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>

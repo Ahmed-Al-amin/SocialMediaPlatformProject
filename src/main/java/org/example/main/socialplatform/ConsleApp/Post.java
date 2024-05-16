@@ -13,7 +13,7 @@ public class Post extends Author {
     public int postId;
     private String Authorname;
 
-    private ArrayList<User> Mentioned = new ArrayList<User>();
+    //private ArrayList<User> Mentioned = new ArrayList<User>();
     private final ArrayList<Comment> comments = new ArrayList<Comment>();
     private int numberOfComments;
 
@@ -90,10 +90,10 @@ public Post(String name,String content, String username, String time, int postid
         numberOfReacts--;
     }
 
-    public ArrayList<User> getAllMentionedUsers() {
-
-        return Mentioned;
-    }
+//    public ArrayList<User> getAllMentionedUsers() {
+//
+//        return Mentioned;
+//    }
     public ArrayList<Comment> getAllComments() {
 
         return comments;
@@ -103,10 +103,10 @@ public Post(String name,String content, String username, String time, int postid
 
         return getAllComments().get(commentId);
     }
-    public void addMentionedUsers(User user){
-
-        Mentioned.add(user);
-    }
+//    public void addMentionedUsers(User user){
+//
+//        Mentioned.add(user);
+//    }
     public void addComment(Comment comment){
 
         comments.add(comment);

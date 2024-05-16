@@ -67,6 +67,7 @@ public class EditProfileController {
         ageField.setText(String.valueOf(user.getAge()));
         genderlabel.setText(user.getGender());
         UsernameLabe.setText(user.getUserName());
+        bioField.setText(DataTransfer.Getbio(user.getUserName()));
 
 
     }
