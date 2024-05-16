@@ -266,7 +266,7 @@ public class DataTransfer {
 
                 User user = new User(name, username, password, age, gender, phonenumber, email);
                 Main.Users.add(user);
-                System.out.println("Success in read all users");
+                //System.out.println("Success in read all users");
             }
         } catch (SQLException e) {
             System.out.println("Error reading users from the database: " + e.getMessage());
@@ -289,7 +289,7 @@ public class DataTransfer {
 
                 Post post = new Post(name, content, username, time, postId);
                 Main.Posts.add(post);
-                System.out.println("Success in read all posts");
+                //System.out.println("Success in read all posts");
             }
         } catch (SQLException e) {
             System.out.println("Error reading posts from the database: " + e.getMessage());
@@ -311,7 +311,7 @@ public class DataTransfer {
 
                 Comment comment = new Comment(content, username, time, postId);
                 Main.comments.add(comment);
-                System.out.println("Success in read all comments");
+                //System.out.println("Success in read all comments");
 
             }
         } catch (SQLException e) {
@@ -344,7 +344,7 @@ public class DataTransfer {
                     Main.FriendshipsPending.add(friend);
                 else
                     Main.FriendshipsAccepted.add(friend);
-                System.out.println("Success in read all friends");
+                //System.out.println("Success in read all friends");
             }
         } catch (SQLException e) {
             System.out.println("Error reading friends from the database: " + e.getMessage());
@@ -365,7 +365,7 @@ public class DataTransfer {
                 Likes like = new Likes(postId);
                 like.Adduser(username);
                 Main.likes.add(like);
-                System.out.println("Success in read all Likes");
+                //System.out.println("Success in read all Likes");
 
             }
         } catch (SQLException e) {
