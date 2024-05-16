@@ -2,10 +2,11 @@ This project implements a social media platform application using JavaFX for the
 
 Features:
 
-User registration with profile picture upload (stored as BLOB)
-User login (potentially with email and password)
-Basic user profile management (name, email)
-(Optional) Additional features like creating posts, comments, friend connections, etc.
+    User registration with profile picture upload (stored as BLOB)
+    User login (potentially with email and password)
+    Basic user profile management (name, email)
+    (Optional) Additional features like creating posts, comments, friend connections, etc.
+    
 Getting Started:
 
 Working Environment and Setup in IntelliJ IDEA
@@ -36,8 +37,10 @@ Project Setup:
     Under "Maven", ensure the "Local repository" path points to your existing Maven repository directory (usually ~/.m2/repository on Linux/macOS or C:\Users\<username>\.m2\repository on Windows).
     Click "OK" to save settings.
     
-3-The application creates a database file named "Database.db" upon first run.
-  You can modify the database schema (tables and columns) by editing the relevant Java classes.
+ 3-The application creates a SQLite database:
+
+        file named "Database.db" upon first run.
+        You can modify the database schema (tables and columns) by editing the relevant Java classes.
 
 Running the Application:
 
@@ -54,19 +57,19 @@ Running the Application:
     
 Additional Tips:
 
-  Project Structure:
-    IntelliJ IDEA helps organize your project. Familiarize yourself with the project structure in the Project pane (e.g., src/main/java for source code, src/main/resources for resources).
-  
-  Code Completion and Navigation:
-    Utilize IntelliJ IDEA's code completion features (Ctrl+Space) to suggest relevant classes, methods, and keywords.
-    Use navigation shortcuts (e.g., Alt+Click) to jump between related code elements.
-    
-  Debugging:
-    Set breakpoints in your code (click next to line numbers) to pause execution at specific points.
-    Utilize the debugger features (step through code, inspect variables) to identify and fix errors.
-    
-  Refactoring:
-    IntelliJ IDEA offers code refactoring tools (right-click on code elements) to improve code organization and readability.
+      1-Project Structure:
+        IntelliJ IDEA helps organize your project. Familiarize yourself with the project structure in the Project pane (e.g., src/main/java for source code, src/main/resources for resources).
+      
+      2-Code Completion and Navigation:
+        Utilize IntelliJ IDEA's code completion features (Ctrl+Space) to suggest relevant classes, methods, and keywords.
+        Use navigation shortcuts (e.g., Alt+Click) to jump between related code elements.
+        
+      3-Debugging:
+        Set breakpoints in your code (click next to line numbers) to pause execution at specific points.
+        Utilize the debugger features (step through code, inspect variables) to identify and fix errors.
+        
+      4-Refactoring:
+        IntelliJ IDEA offers code refactoring tools (right-click on code elements) to improve code organization and readability.
 
 
 This is a basic framework for a social media platform.
