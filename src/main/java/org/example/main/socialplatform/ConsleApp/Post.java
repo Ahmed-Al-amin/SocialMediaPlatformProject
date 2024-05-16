@@ -33,14 +33,13 @@ public Post(String content, String date) {
     Id++;
 
 }
-public Post(String name,String content, String username, String time,int noOfcomments, int noOflikes, int postid)
+public Post(String name,String content, String username, String time, int postid)
 {
     this.Authorname = name;
     this.content=content;
     this.author = username;
     this.timestamp = time;
-    this.numberOfComments = noOfcomments;
-    this.numberOfReacts = noOflikes;
+    this.postId = Id;
     Id++;
 
 }
@@ -86,6 +85,10 @@ public Post(String name,String content, String username, String time,int noOfcom
 
         numberOfReacts++;
     }
+    public void DeleteReact() {
+
+        numberOfReacts--;
+    }
 
     public ArrayList<User> getAllMentionedUsers() {
 
@@ -110,26 +113,11 @@ public Post(String name,String content, String username, String time,int noOfcom
     }
 /***********************************************************/
 
-public void setPostPrivacy(Post post) {
-    System.out.println("Enter a choice : ");
-    System.out.println("1- For public");
-    System.out.println("2- For private");
-    boolean validate = false;
-    int choice = 0;
-    while (!validate) {
-        try {
-            choice = in.nextInt();
-            validate = true;
-        } catch (InputMismatchException e) {
-            System.out.println("invaild choice try again");
-            System.out.println("Enter a choice :");
-            in.nextLine();
-        }
-    }
 
 
 
-    }
+
+
 }
 
 

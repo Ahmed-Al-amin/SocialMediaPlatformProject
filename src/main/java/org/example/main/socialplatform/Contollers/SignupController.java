@@ -2,6 +2,17 @@ package org.example.main.socialplatform.Contollers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+
+import java.io.*;
+import java.net.URL;
+import java.nio.file.Files;
+import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -10,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.main.socialplatform.ConsleApp.User;
@@ -17,15 +29,25 @@ import org.example.main.socialplatform.Main;
 import org.example.main.socialplatform.Models.DataTransfer;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.ResourceBundle;
 
 
+public class SignupController implements Initializable {
 
-public class SignupController {
-
+    @FXML
+    public Button uploadButton;
+    public ImageView ProfilePicture;
     /**************************************************Login Controller**********************************************/
     private Parent  parent ;
     private Stage stage;
     private Scene scene;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //uploadButton.setOnAction(e -> uploadProfilePicture());
+    }
 
 
     public void LoginScene(ActionEvent a) throws IOException {
@@ -372,5 +394,62 @@ public class SignupController {
 
         return true;
     }
+
+    @FXML
+    public void uploadAndSavePhoto(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Image");
+        fileChooser.setInitialDirectory(new File("C:"));
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("JPEG Image", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG Image", "*.png"),
+                new FileChooser.ExtensionFilter("All Image files", "*.jpg", "*.png")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null) {
+            // Display the selected image on the ImageView
+            Image image = new Image(selectedFile.toURI().toString());
+            ProfilePicture.setImage(image);
+
+            if (true) {
+                converting(selectedFile);
+                saveImage(selectedFile);
+
+            }
+        } else {
+            System.out.println("No image file selected.");
+        }
+    }
+
+    private void saveImage(File imageFile) {
+
+        try {
+            File destinationFile = new File("C:\\Users\\Ahmed Al-Amin\\OneDrive\\Desktop\\OOP Project\\Social media platform\\src\\main\\resources\\Photos", imageFile.getName());
+            Files.copy(imageFile.toPath(), destinationFile.toPath());
+            System.out.println("Image saved successfully to: " + destinationFile.getAbsolutePath());
+        } catch (IOException e) {
+            System.out.println("Error saving image: " + e.getMessage());
+        }
+    }
+    public void converting (File imageFile)
+    {
+    byte[] imageBytes;
+  try {
+        FileInputStream inputStream = new FileInputStream(imageFile);
+        long imageLength = imageFile.length();
+        imageBytes = new byte[(int) imageLength];
+        int bytesRead = inputStream.read(imageBytes);
+
+        if (bytesRead != imageLength) {
+            throw new IOException("Couldn't fully read image file");
+        }
+
+        inputStream.close();
+    } catch (IOException e) {
+        System.out.println("Error reading image file: " + e.getMessage());
+    }
+}
 }
 

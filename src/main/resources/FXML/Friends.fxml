@@ -125,7 +125,6 @@
                   <Font name="Calibri Bold Italic" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="addLabel" layoutX="108.0" layoutY="140.0" prefHeight="36.0" prefWidth="186.0" text="Label" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="918.0" layoutY="533.0" prefHeight="266.0" prefWidth="346.0" style="-fx-background-color: rgb(200,200,200);">
@@ -141,7 +140,6 @@
                   <Font name="Calibri Bold Italic" size="14.0" />
                </font>
             </Button>
-            <Label layoutX="108.0" layoutY="140.0" prefHeight="36.0" prefWidth="186.0" text="Label" />
          </children>
       </AnchorPane>
    </children>

@@ -185,6 +185,8 @@ public class EditProfileController {
         String bio ;
         bio = bioField.getText();
     }
+
+    /*********************************************Switching scenes***************************************************/
     public void Dashboard (ActionEvent a) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Dashboard.fxml"));
         parent = loader.load();

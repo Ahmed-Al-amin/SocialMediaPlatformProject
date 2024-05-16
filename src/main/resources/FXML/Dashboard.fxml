@@ -77,7 +77,7 @@
                         <VBox prefHeight="100.0" prefWidth="150.0" spacing="10.0">
                             <children>
                                 <Label fx:id="LikesLabel" prefHeight="28.0" prefWidth="132.0" text="Number of likes" />
-                                <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="120.0" text="Like">
+                                <Button fx:id="LikeButton" mnemonicParsing="false" onAction="#addlike" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: rgb(200,200,200); -fx-border-color: black;" text="Like">
                                     <graphic>
                                         <ImageView fitHeight="36.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -153,7 +153,7 @@
                   <Font name="Calibri Bold Italic" size="18.0" />
                </font>
             </Label>
-                    <Label fx:id="CommentsLabel" prefHeight="19.0" prefWidth="127.0" text="Number of comments" />
+                    <Label fx:id="CommentsnumberLabel" prefHeight="19.0" prefWidth="127.0" text="Number of comments" />
             <TextField fx:id="CommentField" prefHeight="54.0" prefWidth="549.0" promptText="Write your comment" />
                     <Button fx:id="commentButton" mnemonicParsing="false" onAction="#addComment" prefHeight="35.0" prefWidth="134.0" text="Comment">
                         <graphic>

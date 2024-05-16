@@ -7,10 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import org.example.main.socialplatform.ConsleApp.Comment;
-import org.example.main.socialplatform.ConsleApp.Friendship;
-import org.example.main.socialplatform.ConsleApp.Post;
-import org.example.main.socialplatform.ConsleApp.User;
+import org.example.main.socialplatform.ConsleApp.*;
 import org.example.main.socialplatform.Models.DataTransfer;
 import org.example.main.socialplatform.Models.Model;
 
@@ -27,10 +24,15 @@ public class Main extends Application {
     public static ArrayList<Friendship> FriendshipsPending = new ArrayList<>();
     public static ArrayList<User> UserFriendAccepted = new ArrayList<>();
     public static ArrayList<User> UserFriendRequest = new ArrayList<>();
+    public static ArrayList<Likes> likes = new ArrayList<>();
+    public static ArrayList<String> Likesusers = new ArrayList<>();
+
     //public static ArrayList<User> UserFriendSending = new ArrayList<>();
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
 
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/Login.fxml"));
         Scene scene = new Scene(root);
@@ -65,6 +67,7 @@ public class Main extends Application {
         DataTransfer.getAllPosts();
         DataTransfer.getAllComments();
         DataTransfer.getAllFriends();
+        DataTransfer.getAllLikes();
         DataTransfer.Organizing();
     }
     public static void main(String[] args) {

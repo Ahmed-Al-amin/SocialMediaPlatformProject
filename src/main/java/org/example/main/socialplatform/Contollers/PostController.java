@@ -124,8 +124,8 @@ public class PostController {
         post.setAuthorname(user.getName());
         Posts.add(post);
         user.addPost(post);
-
-        WritePostData(user.getName(),user.getUserName(),post.getContent(),postTime,0,0,post.getPostId());
+        WritePostData(user.getName(),user.getUserName(),post.getContent(),postTime,post.getPostId());
+        this.oldPosts();
 
     }
 }

@@ -6,11 +6,12 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="790.0" prefWidth="1509.0" style="-fx-background-color: rgb(220,220,220);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.main.socialplatform.Contollers.SignupController">
-    <AnchorPane layoutX="231.0" layoutY="42.0" prefHeight="626.0" prefWidth="845.0" style="-fx-background-color: rgb(200,200,200); -fx-border-color: black; -fx-border-width: 3;">
+    <AnchorPane layoutX="111.0" layoutY="40.0" prefHeight="626.0" prefWidth="845.0" style="-fx-background-color: rgb(200,200,200); -fx-border-color: black; -fx-border-width: 3;">
         <PasswordField fx:id="PasswordField" layoutX="288.0" layoutY="189.0" prefHeight="40.0" prefWidth="202.0" promptText="Password" style="-fx-background-color: white;" />
         <TextField fx:id="NameField" layoutX="289.0" layoutY="75.0" prefHeight="40.0" prefWidth="202.0" promptText="Name" style="-fx-background-color: white;" />
         <Label layoutX="47.0" layoutY="75.0" prefHeight="40.0" prefWidth="150.0" text="Name:">
@@ -122,9 +123,11 @@
             </font>
         </Label>
     </AnchorPane>
-    <Button fx:id="LoginBackButton" layoutX="441.0" layoutY="698.0" mnemonicParsing="false" onAction="#LoginScene" onMouseEntered="#Editing1" onMouseExited="#Editing2" prefHeight="40.0" prefWidth="434.0" style="-fx-background-color: rgb(220,220,220);" text="You already have an account, Login.">
+    <Button fx:id="LoginBackButton" layoutX="321.0" layoutY="697.0" mnemonicParsing="false" onAction="#LoginScene" onMouseEntered="#Editing1" onMouseExited="#Editing2" prefHeight="40.0" prefWidth="434.0" style="-fx-background-color: rgb(220,220,220);" text="You already have an account, Login.">
         <font>
             <Font name="Calibri Bold Italic" size="24.0" />
         </font>
     </Button>
+   <Button fx:id="uploadPhoto" layoutX="1143.0" layoutY="415.0" mnemonicParsing="false" onAction="#uploadAndSavePhoto" prefHeight="26.0" prefWidth="132.0" text="Upload photo" />
+   <ImageView fx:id="ProfilePicture" fitHeight="150.0" fitWidth="200.0" layoutX="1109.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true" />
 </AnchorPane>

@@ -1,12 +1,14 @@
 package org.example.main.socialplatform.Models;
 
-import org.example.main.socialplatform.ConsleApp.Comment;
-import org.example.main.socialplatform.ConsleApp.Friendship;
-import org.example.main.socialplatform.ConsleApp.Post;
-import org.example.main.socialplatform.ConsleApp.User;
+import org.example.main.socialplatform.ConsleApp.*;
 import org.example.main.socialplatform.Main;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DataTransfer {
     //Connection connection = db.getConnection();
@@ -67,31 +69,30 @@ public class DataTransfer {
     }
 
     public static void CreatePostTable() {
-            String url = "jdbc:sqlite:Database.db";
+        String url = "jdbc:sqlite:Database.db";
 
-            try (Connection conn = DriverManager.getConnection(url);
-                 Statement stmt = conn.createStatement()) {
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
 
-                // Create a new table with the specified columns
-                String sql = "CREATE TABLE IF NOT EXISTS Posts (\n"
-                        + "    name TEXT,\n"
-                        + "    username TEXT,\n"
-                        + "    content TEXT,\n"
-                        + "    time TEXT,\n"
-                        + "    numberOfLikes INTEGER,\n"
-                        + "    numberOfComments INTEGER,\n"
-                        + "    PostId INTEGER PRIMARY KEY\n"
-                        + ");";
+            // Create a new table with the specified columns
+            String sql = "CREATE TABLE IF NOT EXISTS Posts (\n"
+                    + "    name TEXT,\n"
+                    + "    username TEXT,\n"
+                    + "    content TEXT,\n"
+                    + "    time TEXT,\n"
+                    + "    PostId INTEGER PRIMARY KEY\n"
+                    + ");";
 
-                // Execute the SQL query to create the table
-                stmt.execute(sql);
+            // Execute the SQL query to create the table
+            stmt.execute(sql);
 
-                System.out.println("Post Table created successfully.");
+            System.out.println("Post Table created successfully.");
 
-            } catch (SQLException e) {
-                System.err.println("Error creating post table: " + e.getMessage());
-            }
+        } catch (SQLException e) {
+            System.err.println("Error creating post table: " + e.getMessage());
         }
+    }
+
     public static void CreateFriendTable() {
         String url = "jdbc:sqlite:Database.db";
 
@@ -113,6 +114,28 @@ public class DataTransfer {
 
         } catch (SQLException e) {
             System.err.println("Error creating Friend table: " + e.getMessage());
+        }
+    }
+
+    public static void CreateLikesTable() {
+        String url = "jdbc:sqlite:Database.db";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+
+            // Create a new table with the specified columns
+            String sql = "CREATE TABLE IF NOT EXISTS Likes (\n"
+                    + "    username TEXT,\n"
+                    + "    PostId INTEGER\n"
+                    + ");";
+
+            // Execute the SQL query to create the table
+            stmt.execute(sql);
+
+            System.out.println("Likes Table created successfully.");
+
+        } catch (SQLException e) {
+            System.err.println("Error creating Likes table: " + e.getMessage());
         }
     }
 
@@ -141,20 +164,19 @@ public class DataTransfer {
             System.out.println("Error writing user data: " + e.getMessage());
         }
     }
-    public static void WritePostData(String name,String username,String content,String time,int noOflikes,int noOfComments,int postId) {
+
+    public static void WritePostData(String name, String username, String content, String time, int postId) {
         DataTransfer.CreatePostTable();
         String url = "jdbc:sqlite:Database.db";
 
         try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement("INSERT OR REPLACE INTO Posts (name,username, content, time, numberOfLikes, numberOfComments, PostId) VALUES (?,?, ?, ?, ?, ?, ?)")) {
+             PreparedStatement pstmt = conn.prepareStatement("INSERT OR REPLACE INTO Posts (name,username, content, time, PostId) VALUES (?,?, ?, ?, ?)")) {
 
             pstmt.setString(1, name);
             pstmt.setString(2, username);
             pstmt.setString(3, content);
             pstmt.setString(4, time);
-            pstmt.setInt(5,noOflikes );
-            pstmt.setInt(6, noOfComments);
-            pstmt.setInt(7, postId);
+            pstmt.setInt(5, postId);
 
             // Execute the prepared statement to insert data or replace if userId exists
             pstmt.executeUpdate();
@@ -164,7 +186,8 @@ public class DataTransfer {
             System.out.println("Error writing post data: " + e.getMessage());
         }
     }
-    public static void WriteCommentData(String name,String content,String time,int postId) {
+
+    public static void WriteCommentData(String name, String content, String time, int postId) {
         DataTransfer.CreateCommentTable();
         String url = "jdbc:sqlite:Database.db";
 
@@ -184,14 +207,15 @@ public class DataTransfer {
             System.out.println("Error writing Comment data: " + e.getMessage());
         }
     }
-    public static void WriteFriendsData(String Username1,String Username2,String time,String status) {
+
+    public static void WriteFriendsData(String Username1, String Username2, String time, String status) {
         DataTransfer.CreateFriendTable();
         String url = "jdbc:sqlite:Database.db";
 
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement("INSERT OR REPLACE INTO Friends  (username1, username2, Status, time) VALUES (?, ?, ?, ?)")) {
 
-            pstmt.setString(1,Username1);
+            pstmt.setString(1, Username1);
             pstmt.setString(2, Username2);
             pstmt.setString(3, status);
             pstmt.setString(4, time);
@@ -204,9 +228,27 @@ public class DataTransfer {
             System.out.println("Error writing friend data: " + e.getMessage());
         }
     }
+
+    public static void WriteLikesData(String Username, int PostId) {
+        DataTransfer.CreateLikesTable();
+        String url = "jdbc:sqlite:Database.db";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement("INSERT OR REPLACE INTO Likes  (username, PostId) VALUES (?, ?)")) {
+
+            pstmt.setString(1, Username);
+            pstmt.setInt(2, PostId);
+            // Execute the prepared statement to insert data or replace if userId exists
+            pstmt.executeUpdate();
+            System.out.println("Likes Data written successfully");
+
+        } catch (SQLException e) {
+            System.out.println("Error writing like data: " + e.getMessage());
+        }
+    }
+
     /*****************************************Get data from the database*********************************/
-    public static void getAllUsers()
-    {
+    public static void getAllUsers() {
         String url = "jdbc:sqlite:Database.db";
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement();
@@ -222,17 +264,17 @@ public class DataTransfer {
                 int age = rs.getInt("age");
                 int userId = rs.getInt("userId");
 
-                User user = new User(name,username,password,age,gender,phonenumber,email);
+                User user = new User(name, username, password, age, gender, phonenumber, email);
                 Main.Users.add(user);
                 System.out.println("Success in read all users");
             }
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Error reading users from the database: " + e.getMessage());
         }
 
     }
-    public static void getAllPosts()
-    {
+
+    public static void getAllPosts() {
         String url = "jdbc:sqlite:Database.db";
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement();
@@ -243,21 +285,19 @@ public class DataTransfer {
                 String content = rs.getString("content");
                 String username = rs.getString("username");
                 String time = rs.getString("time");
-                int numberoflikes = rs.getInt("numberOfLikes");
                 int postId = rs.getInt("PostId");
-                int numberofcomments = rs.getInt("numberOfComments");
 
-                Post post = new Post(name,content, username,time,numberofcomments,numberoflikes,postId);
+                Post post = new Post(name, content, username, time, postId);
                 Main.Posts.add(post);
                 System.out.println("Success in read all posts");
             }
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Error reading posts from the database: " + e.getMessage());
         }
 
     }
-    public  static void getAllComments()
-    {
+
+    public static void getAllComments() {
         String url = "jdbc:sqlite:Database.db";
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement();
@@ -269,18 +309,18 @@ public class DataTransfer {
                 String time = rs.getString("time");
                 int postId = rs.getInt("PostId");
 
-                Comment comment = new Comment(content,username,time,postId);
+                Comment comment = new Comment(content, username, time, postId);
                 Main.comments.add(comment);
                 System.out.println("Success in read all comments");
 
             }
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Error reading comments from the database: " + e.getMessage());
         }
 
     }
-    public  static void getAllFriends()
-    {
+
+    public static void getAllFriends() {
         String url = "jdbc:sqlite:Database.db";
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement();
@@ -293,74 +333,91 @@ public class DataTransfer {
                 String time = rs.getString("time");
                 User user1 = null;
                 User user2 = null;
-                for (User userSearch : Main.Users)
-                {
+                for (User userSearch : Main.Users) {
                     if (userSearch.getUserName().equals(username1))
                         user1 = userSearch;
                     else if (userSearch.getUserName().equals(username2))
                         user2 = userSearch;
                 }
-                Friendship friend = new Friendship(user1,user2,status,time);
+                Friendship friend = new Friendship(user1, user2, status, time);
                 if (status.equals("Pending"))
                     Main.FriendshipsPending.add(friend);
                 else
                     Main.FriendshipsAccepted.add(friend);
                 System.out.println("Success in read all friends");
             }
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Error reading friends from the database: " + e.getMessage());
         }
 
     }
+
+    public static void getAllLikes() {
+        String url = "jdbc:sqlite:Database.db";
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM Likes")) {
+
+            while (rs.next()) {
+                String username = rs.getString("username");
+                int postId = rs.getInt("PostId");
+
+                Likes like = new Likes(postId);
+                like.Adduser(username);
+                Main.likes.add(like);
+                System.out.println("Success in read all Likes");
+
+            }
+        } catch (SQLException e) {
+            System.out.println("Error reading Likes from the database: " + e.getMessage());
+        }
+
+    }
+
     /************************************************Organizing data************************************/
-    public static void Organizing()
-    {
-        for (Comment coment : Main.comments){
-            for (Post post : Main.Posts)
-            {
-                if (coment.getPostId() == post.getId())
-                {
-                    post.addComment(coment);
-                    break;
+    public static void Organizing() {
+        for (Comment comment : Main.comments) {
+            for (Post post : Main.Posts) {
+                if (comment.getPostId() == post.getId()) {
+                    post.addComment(comment);
                 }
             }
         }
-        for (Post post : Main.Posts){
-            for (User usersearch : Main.Users)
-            {
-                if (usersearch.getUserName().equals(post.getAuthor()))
-                {
+        for (Post post : Main.Posts) {
+            for (User usersearch : Main.Users) {
+                if (usersearch.getUserName().equals(post.getAuthor())) {
                     usersearch.addPost(post);
                 }
             }
         }
-        for (Friendship friend : Main.FriendshipsAccepted)
-        {
-            for (User userSearch : Main.Users)
-            {
-                if (userSearch.equals(friend.getUser1()))
-                {
+        for (Friendship friend : Main.FriendshipsAccepted) {
+            for (User userSearch : Main.Users) {
+                if (userSearch.equals(friend.getUser1())) {
                     userSearch.AddFriend(friend.getUser2());
-                }
-                else if (userSearch.equals(friend.getUser2())){
+                } else if (userSearch.equals(friend.getUser2())) {
                     userSearch.AddFriend(friend.getUser1());
                 }
             }
         }
-        for (Friendship friend : Main.FriendshipsPending)
-        {
-            for (User userSearch : Main.Users)
-            {
-                if (userSearch.equals(friend.getUser2())){
+        for (Friendship friend : Main.FriendshipsPending) {
+            for (User userSearch : Main.Users) {
+                if (userSearch.equals(friend.getUser2())) {
                     userSearch.AddFriendRequest(friend.getUser1());
+                }
+            }
+        }
+        for (Likes like : Main.likes) {
+            for (Post post : Main.Posts) {
+                if (like.getPostId() == post.getPostId()) {
+                    post.addReact();
                 }
             }
         }
 
     }
+
     /****************************************************Update the database******************************/
-    public static void Updateusers()
-    {
+    public static void Updateusers() {
         String url = "jdbc:sqlite:Database.db";
         int userId = 1;
 
@@ -378,9 +435,9 @@ public class DataTransfer {
 
         }
     }
+
     /***************************************************************************************************************/
-    public static void UpdateFriends(String Username, String status, String time)
-    {
+    public static void UpdateFriends(String Username, String status, String time) {
         String url = "jdbc:sqlite:Database.db";
         int userId = 1;
 
@@ -400,7 +457,49 @@ public class DataTransfer {
         }
     }
 
+    public static ArrayList<String> GetUsernamesByPostId(int PostId) {
+        String url = "jdbc:sqlite:Database.db";
+        ArrayList<String> usernames = new ArrayList<>();
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement("SELECT username FROM Likes WHERE PostId = ?")) {
+
+            pstmt.setInt(1, PostId);
+            ResultSet resultSet = pstmt.executeQuery();
+
+            // Loop through the results and add usernames to the list
+            while (resultSet.next()) {
+                usernames.add(resultSet.getString("username"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error getting usernames: " + e.getMessage());
+        }
+
+        return usernames;
+    }
+
+    public static int DeleteLike(String username, int postId) {
+        String url = "jdbc:sqlite:Database.db";
+        int rowsDeleted = 0;
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Likes WHERE username = ? AND PostId = ?")) {
+
+            pstmt.setString(1, username);
+            pstmt.setInt(2, postId);
+            rowsDeleted = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Error deleting like: " + e.getMessage());
+        }
+
+        return rowsDeleted;
+    }
 }
+
+
+
 
 
 

@@ -13,10 +13,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.main.socialplatform.ConsleApp.Comment;
+import org.example.main.socialplatform.ConsleApp.Likes;
 import org.example.main.socialplatform.ConsleApp.Post;
 import org.example.main.socialplatform.ConsleApp.User;
+import org.example.main.socialplatform.Main;
 import org.example.main.socialplatform.Models.DataTransfer;
 
 import java.io.IOException;
@@ -42,6 +45,8 @@ public class DashboardController {
     public Button NextPostButton;
     public VBox Nextpost;
     public VBox Lastpost;
+    public Label CommentsnumberLabel;
+    public Button LikeButton;
     User user;
     private Stage stage;
     private Scene scene;
@@ -57,15 +62,84 @@ public class DashboardController {
     {
         this.user = user;
         this.viewFirstpost();
-
+        try{
+        LikesLabel.setText(String.valueOf(Posts.getFirst().getReacts()));}
+        catch (Exception a)
+        {
+            System.out.println(a.getMessage());
+        }
 
     }
-    static int i ;
+    public void HandelLikeButton()
+    {
+        LikesLabel.setText(String.valueOf(Posts.get(i).getReacts()));
+        Likesusers = DataTransfer.GetUsernamesByPostId(i);
+        boolean flage = true;
+        for (String us : Likesusers)
+        {
+            if (us.equals(user.getUserName()))
+            {
+                LikeButton.setStyle("-fx-background-color: blue;");
+                flage = false;
+                break;
+            }
+
+        }
+        if (flage){
+            LikeButton.setStyle("-fx-background-color: rgb(200,200,200);");
+        }
+    }
+    public void HandelAddLike()
+    {
+        LikeButton.setStyle("-fx-background-color: blue;");
+        LikesLabel.setText(String.valueOf(Posts.get(i).getReacts()));
+
+    }
+    public void HandelDeleteLike()
+    {
+        LikeButton.setStyle("-fx-background-color: rgb(200,200,200);");
+        LikesLabel.setText(String.valueOf(Posts.get(i).getReacts()));
+
+    }
+    public void addlike(ActionEvent a)
+    {
+        if (Posts.get(i).getReacts() == 0) {
+            Posts.get(i).addReact();
+            Likes mn = new Likes(i);
+            mn.Adduser(user.getUserName());
+            likes.add(mn);
+            DataTransfer.WriteLikesData(user.getUserName(), i);
+            this.HandelAddLike();
+        }
+        else {
+            Likesusers = DataTransfer.GetUsernamesByPostId(i);
+            boolean flage = true;
+            for (String us : Likesusers)
+            {
+                if (us.equals(user.getUserName()))
+                {
+                    Posts.get(i).DeleteReact();
+                    DataTransfer.DeleteLike(user.getUserName(),i);
+                    this.HandelDeleteLike();
+                    flage = false;
+                    break;
+                }
+            }
+            if (flage){
+                Posts.get(i).addReact();
+                DataTransfer.WriteLikesData(user.getUserName(),i);
+                this.HandelAddLike();
+            }
+        }
+    }
+    static int i = 0 ;
 
     public void handelComments()
     {
+
         AllCommentsLabel.setText("");
         postcomments = Posts.get(i).getAllComments();
+        CommentsnumberLabel.setText(String.valueOf(postcomments.size()));
         String STR = "";
         for (Comment commentSearch : postcomments) {
             STR += commentSearch.getAuthor() + "\n";
@@ -101,8 +175,9 @@ public class DashboardController {
                     SuggestedLabel.setText("Suggested");
             }
         LikesLabel.setText(String.valueOf(Posts.getFirst().getReacts()));
-        CommentsLabel.setText(String.valueOf(Posts.getFirst().getNumberOfComments()));
+        CommentsnumberLabel.setText(String.valueOf(Posts.getFirst().getNumberOfComments()));
             this.handelComments();
+            this.HandelLikeButton();
             }
        else
         {
@@ -135,7 +210,8 @@ public class DashboardController {
                     SuggestedLabel.setText("Suggested");
             }
             LikesLabel.setText(String.valueOf(Posts.get(i).getReacts()));
-            CommentsLabel.setText(String.valueOf(Posts.get(i).getNumberOfComments()));
+            CommentsnumberLabel.setText(String.valueOf(Posts.get(i).getNumberOfComments()));
+            this.HandelLikeButton();
             this.handelComments();
     }
     }
@@ -163,8 +239,8 @@ public class DashboardController {
                     SuggestedLabel.setText("Suggested");
             }
             LikesLabel.setText(String.valueOf(Posts.get(i).getReacts()));
-            CommentsLabel.setText(String.valueOf(Posts.get(i).getNumberOfComments()));
-
+            CommentsnumberLabel.setText(String.valueOf(Posts.get(i).getNumberOfComments()));
+            this.HandelLikeButton();
             //System.out.println(i);
             this.handelComments();
         }
@@ -198,8 +274,8 @@ public class DashboardController {
                     SuggestedLabel.setText("Suggested");
             }
             LikesLabel.setText(String.valueOf(Posts.get(i).getReacts()));
-            CommentsLabel.setText(String.valueOf(Posts.get(i).getNumberOfComments()));
-
+            CommentsnumberLabel.setText(String.valueOf(Posts.get(i).getNumberOfComments()));
+            this.HandelLikeButton();
             //System.out.println(i);
             this.handelComments();
         }
@@ -231,6 +307,17 @@ public class DashboardController {
         Posts.get(i).addComment(coment);
         DataTransfer.WriteCommentData(user.getName(),Comment,commentTime,i);
         this.handelComments();
+    }
+    public void addLike (ActionEvent a)
+    {
+
+        for (Likes likes : Main.likes)
+        {
+            if (user.getUserName().equals(likes.getusers()))
+            {
+
+            }
+        }
     }
     /*******************************************Switch Scenes*****************************************************/
     public void Addpost (ActionEvent a) throws IOException {
