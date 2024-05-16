@@ -417,16 +417,23 @@ public class DataTransfer {
     }
 
     /****************************************************Update the database******************************/
-    public static void Updateusers() {
+    public static void Updateusers(String name, String phone, String email, int age, String gender, String boi,String username) {
         String url = "jdbc:sqlite:Database.db";
         int userId = 1;
 
         try (Connection conn = DriverManager.getConnection(url)) {
-            String updateSql = "UPDATE Users SET bio = ? WHERE id = ?";
+            String updateSql = "UPDATE Users SET name = ?, phoneNumber = ?, email = ?, age = ?, gender = ?,bio = ?, WHERE username = ?";
             PreparedStatement pstmt = conn.prepareStatement(updateSql);
+            pstmt.setString(1, name);
+            pstmt.setString(2, phone);
+            pstmt.setString(3, email);
+            pstmt.setInt(4, age);
+            pstmt.setString(5, gender);
+            pstmt.setString(6, boi);
+            pstmt.setString(7, username);
 
-            //pstmt.setString(1, newBio);
-            pstmt.setInt(2, userId);
+
+
 
             pstmt.executeUpdate();
             System.out.println("User bio updated successfully!");

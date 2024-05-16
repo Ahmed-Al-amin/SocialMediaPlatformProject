@@ -11,6 +11,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.main.socialplatform.ConsleApp.User;
+import org.example.main.socialplatform.Models.DataTransfer;
 
 import java.io.IOException;
 
@@ -184,6 +185,8 @@ public class EditProfileController {
         /***************************************bio******************************************************************/
         String bio ;
         bio = bioField.getText();
+        if (flage0 && flage4 && flage5 && flage6 && flage7){
+        DataTransfer.Updateusers(name,phonenumber,email,age,gender,bio,user.getUserName());}
     }
 
     /*********************************************Switching scenes***************************************************/
